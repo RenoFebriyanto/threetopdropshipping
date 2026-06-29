@@ -1,0 +1,257 @@
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/dm-serif-display/400.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000000;
+  color: #f5f5f0;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3d3d;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom cursor hidden by default (custom cursor component will show) */
+html {
+  cursor: none;
+}
+
+/* Allow normal cursor on inputs and buttons */
+button,
+input,
+textarea,
+select,
+a[role='button'] {
+  cursor: pointer;
+}
+
+/* Remove default button styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+/* ===== VISUAL ENHANCEMENTS ===== */
+
+/* Section backgrounds with gradient accents */
+section {
+  position: relative;
+  background-color: #000000;
+}
+
+section:nth-child(even) {
+  background-color: #0a0a0a;
+}
+
+/* Decorative line above/below sections */
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2c2c2c, transparent);
+  opacity: 0.3;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2c2c2c, transparent);
+  opacity: 0.3;
+}
+
+/* Product cards - improved styling */
+.product-card {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(232, 255, 0, 0.1);
+}
+
+/* Button shine effect */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateY(-50%);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Input fields styling */
+input,
+textarea {
+  background-color: #1a1a1a;
+  border-color: #2c2c2c;
+  color: #f5f5f0;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #141414;
+  border-color: #E8FF00;
+  box-shadow: 0 0 20px rgba(232, 255, 0, 0.2);
+  outline: none;
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(135deg, #E8FF00, #f5f5f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover glow effect */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(232, 255, 0, 0.3);
+  border-color: #E8FF00;
+}
+
+/* Link underline animation */
+a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #E8FF00;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Loading skeleton effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Badge styling */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #E8FF00;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.badge-outline {
+  border: 1px solid #E8FF00;
+  color: #E8FF00;
+  background-color: transparent;
+}
+
+/* Smooth transition utilities */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Card with border gradient */
+.card-border-gradient {
+  position: relative;
+  border: 1px solid transparent;
+  background-image: 
+    linear-gradient(#0a0a0a, #0a0a0a),
+    linear-gradient(135deg, #E8FF00, #8C8C8C);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
