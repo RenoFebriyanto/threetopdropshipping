@@ -11,42 +11,36 @@ const products = [
     name: 'STRUCTURED OVERSHIRT',
     price: '489.000',
     badge: 'AI PICK',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Overshirt',
   },
   {
     id: 2,
     name: 'WIDE LEG CARGO TROUSERS',
     price: '659.000',
     badge: 'TRENDING',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Cargo',
   },
   {
     id: 3,
     name: 'MINIMAL BOMBER JACKET',
     price: '1.249.000',
     badge: 'LIMITED',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Bomber',
   },
   {
     id: 4,
     name: 'RIBBED TURTLENECK SET',
     price: '379.000',
     badge: 'AI PICK',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Turtleneck',
   },
   {
     id: 5,
     name: 'ASYMMETRIC LAYER COAT',
     price: '1.899.000',
     badge: 'NEW',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Coat',
   },
   {
     id: 6,
     name: 'TECH FABRIC JOGGER',
     price: '529.000',
     badge: 'TRENDING',
-    image: 'https://via.placeholder.com/400x500/1a1a1a/e8ff00?text=Jogger',
   },
 ];
 

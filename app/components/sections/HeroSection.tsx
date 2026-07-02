@@ -7,6 +7,24 @@ import FabricScene from '~/components/three/FabricScene';
 import { HeroGraphic } from '~/lib/svgGraphics';
 import { ChevronDown } from 'lucide-react';
 
+const heroBackground = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050505" />
+      <stop offset="45%" stop-color="#111111" />
+      <stop offset="100%" stop-color="#050505" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <circle cx="300" cy="200" r="180" fill="none" stroke="#E8FF00" stroke-width="3" opacity="0.18" />
+  <circle cx="1280" cy="720" r="200" fill="none" stroke="#E8FF00" stroke-width="3" opacity="0.12" />
+  <path d="M 380 460 C 520 340 820 380 950 310" stroke="#E8FF00" stroke-width="2" fill="none" opacity="0.22" />
+  <path d="M 180 740 C 360 680 620 720 820 660" stroke="#E8FF00" stroke-width="2" fill="none" opacity="0.16" />
+</svg>
+`)}
+`;
+
 // Split text into words for staggered animation
 function splitTextToWords(text: string) {
   return text.split(' ').map((word, index) => (
@@ -108,11 +126,21 @@ export default function HeroSection() {
 
   return (
     <section
+      id="new-in"
       ref={heroRef}
       className="relative w-full min-h-screen section-shell flex items-center justify-center overflow-hidden"
     >
+      {/* Hero background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url("${heroBackground}")`,
+        }}
+      />
+      <div className="absolute inset-0 bg-black/65" />
+
       {/* SVG Graphic Background */}
-      <div className="absolute inset-0 opacity-60">
+      <div className="absolute inset-0 opacity-40">
         <HeroGraphic />
       </div>
 

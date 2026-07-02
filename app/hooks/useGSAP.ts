@@ -10,7 +10,7 @@ export function useGSAP(
   callback: () => void | gsap.core.Timeline,
   options?: UseGSAPOptions
 ) {
-  const contextRef = useRef<gsap.core.Context | null>(null);
+  const contextRef = useRef<ReturnType<typeof gsap.context> | null>(null);
 
   useEffect(() => {
     // Create a GSAP context for proper cleanup

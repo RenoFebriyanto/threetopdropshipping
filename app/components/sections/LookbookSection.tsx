@@ -59,13 +59,15 @@ export default function LookbookSection() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!trackRef.current) return;
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!track || !section) return;
 
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: sectionRef.current,
+        trigger: section,
         start: 'top top',
-        end: '+=300%',
+        end: () => `+=${section.offsetHeight * 2.2}`,
         scrub: 1,
         pin: true,
       },
@@ -79,6 +81,7 @@ export default function LookbookSection() {
 
   return (
     <section
+      id="lookbook"
       ref={sectionRef}
       className="w-full section-shell py-24 sm:py-32 border-b border-smoke relative"
     >
@@ -92,16 +95,16 @@ export default function LookbookSection() {
       </div>
 
       {/* Horizontal Scrollable Track */}
-      <div className="w-full h-[600px] sm:h-[700px] overflow-hidden">
+      <div className="w-full h-[420px] sm:h-[520px] lg:h-[620px] overflow-x-auto md:overflow-hidden snap-x snap-mandatory md:snap-none">
         <div
           ref={trackRef}
-          className="lookbook-track flex gap-8 h-full"
+          className="lookbook-track flex gap-6 h-full min-w-full md:min-w-max md:mx-0"
           style={{ width: 'max-content' }}
         >
           {lookbookImages.map((item) => (
             <div
               key={item.id}
-              className="section-card flex-shrink-0 w-[90vw] sm:w-[80vw] lg:w-[70vw] h-full relative group cursor-pointer overflow-hidden rounded-[2rem] border border-white/10"
+              className="section-card flex-shrink-0 w-[85vw] sm:w-[70vw] lg:w-[60vw] h-full relative group cursor-pointer overflow-hidden rounded-[2rem] border border-white/10 snap-start"
             >
               <img
                 src={item.image}

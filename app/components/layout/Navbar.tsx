@@ -18,30 +18,33 @@ export default function Navbar() {
   // Navbar entrance animation
   useGSAP(() => {
     const timeline = gsap.timeline({ delay: 2.2 });
+    const navItems = navLinksRef.current?.children;
 
-    timeline
-      // Logo slide in from left
-      .from(navLogoRef.current, {
-        x: -30,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-      })
-      // Nav links stagger from right
-      .from(navLinksRef.current?.children, {
+    timeline.from(navLogoRef.current, {
+      x: -30,
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+    });
+
+    if (navItems) {
+      timeline.from(navItems, {
         y: -20,
         opacity: 0,
         stagger: 0.08,
         duration: 0.5,
         ease: 'power2.out',
-      }, '-=0.4')
-      // CTA button scale in
-      .from(navCtaRef.current, {
+      }, '-=0.4');
+    }
+
+    if (navCtaRef.current) {
+      timeline.from(navCtaRef.current, {
         scale: 0.8,
         opacity: 0,
         duration: 0.4,
         ease: 'back.out(1.7)',
       }, '-=0.2');
+    }
   });
 
   // Scroll effect
