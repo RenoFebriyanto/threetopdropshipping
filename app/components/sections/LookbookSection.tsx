@@ -80,13 +80,13 @@ export default function LookbookSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-void py-24 sm:py-32 border-b border-smoke relative"
+      className="w-full section-shell py-24 sm:py-32 border-b border-smoke relative"
     >
-      <div className="absolute top-8 left-8 z-10">
-        <p className="text-xs uppercase tracking-widest font-mono text-signal mb-2">
+      <div className="absolute top-8 left-8 z-10 rounded-2xl border border-signal/20 bg-black/40 px-4 py-3 backdrop-blur-md">
+        <p className="text-[10px] uppercase tracking-[0.35em] font-mono text-signal mb-2">
           Lookbook
         </p>
-        <h2 className="text-2xl sm:text-3xl font-serif-display font-bold text-ivory">
+        <h2 className="section-heading text-2xl sm:text-3xl font-bold text-ivory">
           Our Editorial Curation
         </h2>
       </div>
@@ -101,7 +101,7 @@ export default function LookbookSection() {
           {lookbookImages.map((item) => (
             <div
               key={item.id}
-              className="flex-shrink-0 w-[90vw] sm:w-[80vw] lg:w-[70vw] h-full relative group cursor-pointer"
+              className="section-card flex-shrink-0 w-[90vw] sm:w-[80vw] lg:w-[70vw] h-full relative group cursor-pointer overflow-hidden rounded-[2rem] border border-white/10"
             >
               <img
                 src={item.image}
@@ -110,7 +110,7 @@ export default function LookbookSection() {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/80" />
 
               {/* Text */}
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">

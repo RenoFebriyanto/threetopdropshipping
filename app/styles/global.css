@@ -5,10 +5,101 @@
 @import '@fontsource/dm-serif-display/400.css';
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  color-scheme: dark;
+  --theme-accent: #E8FF00;
+  --theme-bg: #000000;
+  --theme-surface: #101010;
+  --theme-surface-strong: #171717;
+  --theme-border: rgba(232, 255, 0, 0.18);
+}
+
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(232, 255, 0, 0.14), transparent 32%),
+    linear-gradient(135deg, rgba(10, 10, 10, 0.96), rgba(0, 0, 0, 0.98));
+  border-top: 1px solid rgba(232, 255, 0, 0.12);
+  border-bottom: 1px solid rgba(232, 255, 0, 0.12);
+}
+
+.section-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 90%);
+  pointer-events: none;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(232, 255, 0, 0.24);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.section-heading {
+  font-family: 'DM Serif Display', Georgia, serif;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.section-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(24, 24, 24, 0.95), rgba(8, 8, 8, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(232, 255, 0, 0.08) 50%, transparent 100%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.section-card:hover::before {
+  transform: translateX(120%);
+}
+
+.section-button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(232, 255, 0, 0.24);
+  box-shadow: 0 10px 30px rgba(232, 255, 0, 0.12);
+}
+
+.section-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.section-button:hover::before {
+  transform: translateX(120%);
+}
+
+.section-button-outline {
+  border: 1px solid rgba(232, 255, 0, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
 
 * {
   margin: 0;

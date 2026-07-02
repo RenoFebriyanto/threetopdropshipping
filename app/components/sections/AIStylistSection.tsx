@@ -43,7 +43,7 @@ export default function AIStylistSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-carbon py-24 sm:py-32 lg:py-40 border-b border-smoke relative"
+      className="w-full section-shell py-24 sm:py-32 lg:py-40 border-b border-smoke relative"
     >
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-signal/5 rounded-full blur-3xl pointer-events-none" />
@@ -52,12 +52,12 @@ export default function AIStylistSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
           <div className="flex flex-col gap-6">
-            <div className="ai-element inline-flex items-center gap-3 w-fit px-4 py-2 border border-signal rounded-full bg-void/50">
+            <div className="ai-element section-pill w-fit">
               <span className="w-2 h-2 bg-signal rounded-full animate-pulse" />
               <p className="text-xs uppercase tracking-widest font-mono text-signal">Powered by AI</p>
             </div>
             
-            <h2 className="ai-element text-3xl sm:text-4xl lg:text-5xl font-serif-display font-bold text-ivory">
+            <h2 className="ai-element section-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory">
               Your Personal Style Algorithm
             </h2>
             
@@ -66,7 +66,7 @@ export default function AIStylistSection() {
               and surfaces pieces that match your unique style before they sell out.
             </p>
             
-            <button className="ai-element self-start px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim hover:scale-105 mt-4 rounded">
+            <button className="ai-element section-button self-start px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim hover:scale-105 mt-4 rounded-full">
               TRY AI STYLIST →
             </button>
           </div>
@@ -74,7 +74,7 @@ export default function AIStylistSection() {
           {/* Right: Chat Interface */}
           <div
             ref={chatBoxRef}
-            className="ai-element bg-ash rounded-lg border-2 border-smoke hover:border-signal transition-all duration-300 p-6 flex flex-col shadow-lg hover:shadow-signal/20"
+            className="ai-element section-card rounded-[1.5rem] border-2 border-smoke/70 hover:border-signal/40 transition-all duration-300 p-6 flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-smoke">

@@ -28,20 +28,20 @@ export default function SocialProofSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-carbon py-24 sm:py-32 lg:py-40 border-b border-smoke"
+      className="w-full section-shell py-24 sm:py-32 lg:py-40 border-b border-smoke"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center text-center">
           <p className="text-xs uppercase tracking-widest font-mono text-signal mb-4 opacity-70">Loved by thousands</p>
-          <h2 className="text-3xl sm:text-4xl font-serif-display font-bold text-ivory">
+          <h2 className="section-heading text-3xl sm:text-4xl font-bold text-ivory">
             What Our Community Says
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Main Review */}
-          <div className="proof-element bg-ash rounded-lg p-8 border-2 border-smoke hover:border-signal transition-colors duration-300">
+          <div className="proof-element section-card rounded-[1.5rem] p-8 border-2 border-smoke/70 hover:border-signal/40 transition-colors duration-300">
             <div className="flex gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -72,7 +72,7 @@ export default function SocialProofSection() {
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="aspect-square bg-graphite rounded-lg overflow-hidden group cursor-pointer border border-smoke hover:border-signal transition-all duration-300"
+                className="aspect-square section-card rounded-[1.25rem] overflow-hidden group cursor-pointer border border-smoke/70 hover:border-signal/40 transition-all duration-300"
               >
                 <div className="w-full h-full flex flex-col items-start justify-between bg-gradient-to-br from-graphite via-ash to-graphite relative overflow-hidden p-4">
                   <div className="w-10 h-10 rounded-full border border-signal/40 flex items-center justify-center text-signal text-xs font-bold">
@@ -94,7 +94,7 @@ export default function SocialProofSection() {
         </div>
 
         {/* Stats Ticker */}
-        <div className="proof-element bg-gradient-to-r from-ash via-graphite to-ash rounded-lg p-8 border-2 border-smoke/50 hover:border-signal/30 transition-colors duration-300">
+        <div className="proof-element section-card rounded-[1.5rem] p-8 border-2 border-smoke/50 hover:border-signal/30 transition-colors duration-300">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             <div>
               <p className="text-3xl sm:text-4xl font-serif-display font-bold text-signal mb-2">4.9</p>

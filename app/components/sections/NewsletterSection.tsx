@@ -28,7 +28,7 @@ export default function NewsletterSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-20 sm:py-28 relative overflow-hidden"
+      className="w-full section-shell py-20 sm:py-28 relative overflow-hidden"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-carbon via-void to-carbon" />
@@ -49,7 +49,7 @@ export default function NewsletterSection() {
           </div>
         </div>
 
-        <h2 className="newsletter-element text-3xl sm:text-4xl font-serif-display font-bold text-ivory mb-4">
+        <h2 className="newsletter-element section-heading text-3xl sm:text-4xl font-bold text-ivory mb-4">
           Get drops before everyone else.
         </h2>
         <p className="newsletter-element text-base sm:text-lg text-pearl mb-8 leading-relaxed">
@@ -57,13 +57,13 @@ export default function NewsletterSection() {
         </p>
 
         {/* Email Input Form */}
-        <div className="newsletter-element flex flex-col sm:flex-row gap-3 mb-4">
+        <div className="newsletter-element section-card rounded-[1.5rem] p-3 sm:p-4 flex flex-col sm:flex-row gap-3 mb-4">
           <input
             type="email"
             placeholder="your@email.com"
             className="flex-1 bg-ash border-2 border-smoke px-6 py-4 text-ivory placeholder-silver outline-none focus:border-signal transition-all duration-300 focus:shadow-lg focus:shadow-signal/20 text-sm rounded"
           />
-          <button className="px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim whitespace-nowrap rounded hover:scale-105 hover:shadow-lg hover:shadow-signal/30">
+          <button className="section-button px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim whitespace-nowrap rounded-full hover:scale-105 hover:shadow-lg hover:shadow-signal/30">
             JOIN NOW
           </button>
         </div>

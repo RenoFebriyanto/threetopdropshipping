@@ -29,15 +29,15 @@ export default function ManifestoSection() {
   });
 
   return (
-    <section ref={sectionRef} className="w-full bg-carbon py-24 sm:py-32 lg:py-40 border-b border-smoke">
+    <section ref={sectionRef} className="w-full section-shell py-24 sm:py-32 lg:py-40 border-b border-smoke">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div className="flex flex-col gap-6">
-            <h2 className="manifesto-line text-3xl sm:text-4xl lg:text-5xl font-serif-display font-bold leading-tight text-ivory">
+            <h2 className="manifesto-line section-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-ivory">
               WE DON'T FOLLOW TRENDS.
             </h2>
-            <h3 className="manifesto-line text-3xl sm:text-4xl lg:text-5xl font-serif-display font-bold leading-tight text-signal">
+            <h3 className="manifesto-line section-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-signal">
               WE PREDICT THEM.
             </h3>
 
@@ -48,7 +48,7 @@ export default function ManifestoSection() {
           </div>
 
           {/* Stats */}
-          <div className="flex flex-col gap-8 lg:border-l lg:border-smoke lg:pl-16">
+          <div className="section-card flex flex-col gap-8 rounded-[2rem] p-8 lg:border-l lg:border-smoke lg:pl-16">
             <div className="manifesto-line flex gap-4 items-start">
               <StatIcon type="pieces" />
               <div>

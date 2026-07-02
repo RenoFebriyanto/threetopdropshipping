@@ -9,7 +9,7 @@ export default function TickerBar() {
   ];
 
   return (
-    <div className="w-full bg-signal text-void py-3 overflow-hidden">
+    <div className="w-full bg-[linear-gradient(90deg,#e8ff00_0%,#dffb00_45%,#c4d300_100%)] text-void py-3 overflow-hidden border-y border-black/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]">
       <div className="flex animate-marquee whitespace-nowrap">
         {[...Array(4)].map((_, i) => (
           <div key={i} className="flex gap-8 pr-8">

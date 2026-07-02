@@ -78,16 +78,16 @@ export default function FeaturedProducts() {
   });
 
   return (
-    <section ref={sectionRef} className="w-full bg-void py-24 sm:py-32 lg:py-40">
+    <section ref={sectionRef} className="w-full section-shell py-24 sm:py-32 lg:py-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center text-center">
-          <div className="mb-6 inline-flex items-center gap-3 px-4 py-2 border border-signal rounded-full bg-void/50">
+          <div className="section-pill mb-6">
             <span className="w-2 h-2 bg-signal rounded-full animate-pulse" />
             <p className="text-xs uppercase tracking-widest font-mono text-signal">New Drop Collection</p>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-display font-bold text-ivory mb-4">
+          <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory mb-4">
             THIS WEEK
           </h2>
           
@@ -113,10 +113,10 @@ export default function FeaturedProducts() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="product-card group cursor-pointer"
+              className="product-card section-card group cursor-pointer rounded-2xl p-4"
             >
               {/* Image Container */}
-              <div className="relative mb-4 overflow-hidden bg-graphite aspect-[4/5] border border-smoke">
+              <div className="relative mb-4 overflow-hidden bg-graphite/90 aspect-[4/5] rounded-xl border border-smoke/70">
                 <ProductPlaceholder index={product.id - 1} />
                 
                 {/* Badge */}
@@ -124,7 +124,7 @@ export default function FeaturedProducts() {
                   {product.badge}
                 </div>
                 {/* Quick Add Button */}
-                <button className="absolute bottom-0 left-0 right-0 bg-signal text-void py-3 font-bold uppercase text-sm tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
+                <button className="absolute bottom-0 left-0 right-0 bg-signal text-void py-3 font-bold uppercase text-sm tracking-wider transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 rounded-t-xl">
                   QUICK ADD +
                 </button>
               </div>
@@ -152,7 +152,7 @@ export default function FeaturedProducts() {
 
         {/* CTA */}
         <div className="flex justify-center">
-          <button className="px-8 py-4 border border-signal text-signal font-grotesk uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal hover:text-void">
+          <button className="section-button-outline px-8 py-4 rounded-full border border-signal text-signal font-grotesk uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal hover:text-void">
             VIEW ALL DROPS →
           </button>
         </div>

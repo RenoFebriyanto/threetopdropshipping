@@ -109,7 +109,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-screen bg-void flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-screen section-shell flex items-center justify-center overflow-hidden"
     >
       {/* SVG Graphic Background */}
       <div className="absolute inset-0 opacity-60">
@@ -122,10 +122,10 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 lg:px-16 flex flex-col items-center text-center">
         {/* Decorative top accent */}
-        <div className="mb-8 flex items-center gap-4 opacity-60">
-          <div className="h-px w-12 bg-signal" />
-          <span className="text-xs uppercase tracking-widest font-mono text-signal">Premium Fashion</span>
-          <div className="h-px w-12 bg-signal" />
+        <div className="section-pill mb-8 opacity-90">
+          <div className="h-px w-8 bg-signal" />
+          <span className="text-[10px] uppercase tracking-[0.35em] font-mono text-signal">Premium Fashion</span>
+          <div className="h-px w-8 bg-signal" />
         </div>
 
         {/* Headline */}
@@ -151,11 +151,11 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div ref={ctaGroupRef} className="flex flex-col sm:flex-row gap-4 mb-16">
-          <button className="px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim hover:scale-105 relative group overflow-hidden">
+          <button className="section-button px-8 py-4 bg-signal text-void font-grotesk font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal-dim hover:scale-105 relative group overflow-hidden rounded-full">
             <span className="relative z-10">SHOP THE DROP →</span>
             <div className="absolute inset-0 bg-signal-dim transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
           </button>
-          <button className="px-8 py-4 border-2 border-signal text-signal font-grotesk uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal hover:text-void hover:scale-105">
+          <button className="section-button-outline px-8 py-4 rounded-full border-2 border-signal text-signal font-grotesk uppercase tracking-wider text-sm transition-all duration-300 hover:bg-signal hover:text-void hover:scale-105">
             MEET YOUR AI STYLIST
           </button>
         </div>
