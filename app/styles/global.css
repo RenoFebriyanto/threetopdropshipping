@@ -1,0 +1,358 @@
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/dm-serif-display/400.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import 'tailwindcss';
+
+/* FIX 1 (Tailwind v4): link the JS config so custom colors/fonts/
+   spacing/animations in tailwind.config.ts actually generate CSS
+   (bg-void, text-ivory, bg-signal, font-grotesk, font-serif-display,
+   the xs..3xl spacing scale, fade-in/slide-up/scale-in animations). */
+@config '../../tailwind.config.ts';
+
+/* ============================================================
+   FIX 2 (Tailwind v4, the big one): everything below used to be
+   PLAIN, unlayered CSS. Tailwind utility classes (px-4, py-24,
+   mx-auto, gap-8, bg-signal...) live inside CSS Cascade Layers.
+   Per spec, ANY unlayered CSS always wins over ANY layered CSS,
+   regardless of order or specificity. Your old
+   `* { margin:0; padding:0 }` reset and `button { padding:0 }`
+   rule were therefore silently overriding EVERY spacing/padding/
+   margin utility on the whole site: mx-auto stopped centering,
+   px-4/py-24 stopped adding spacing, buttons lost their padding,
+   sections lost their padding, cards collapsed - exactly the
+   "wall of unstyled text, no layout" look in your screenshot.
+
+   Fix: wrap this CSS in @layer base / @layer components so it
+   sits in Tailwind's own layer system and utility classes can
+   override it exactly as intended. */
+/* ============================================================ */
+
+:root {
+  color-scheme: dark;
+  --theme-accent: #E8FF00;
+  --theme-bg: #000000;
+  --theme-surface: #101010;
+  --theme-surface-strong: #171717;
+  --theme-border: rgba(232, 255, 0, 0.18);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Custom cursor hidden by default (CursorFollower draws it) */
+    cursor: none;
+  }
+
+  body {
+    background-color: #000000;
+    color: #f5f5f0;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  button,
+  input,
+  textarea,
+  select,
+  a[role='button'] {
+    cursor: pointer;
+  }
+
+  /* Remove default button chrome. Utility classes like bg-signal,
+     px-8, py-4, rounded-full still win over this: it's in
+     @layer base, which sits below Tailwind's utilities layer. */
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+  }
+
+  a {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2c2c2c;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3d3d3d;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .section-shell {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top left, rgba(232, 255, 0, 0.14), transparent 32%),
+      linear-gradient(135deg, rgba(10, 10, 10, 0.96), rgba(0, 0, 0, 0.98));
+    border-top: 1px solid rgba(232, 255, 0, 0.12);
+    border-bottom: 1px solid rgba(232, 255, 0, 0.12);
+  }
+
+  .section-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 90%);
+    pointer-events: none;
+  }
+
+  .section-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(232, 255, 0, 0.24);
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .section-heading {
+    font-family: 'DM Serif Display', Georgia, serif;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .section-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(24, 24, 24, 0.95), rgba(8, 8, 8, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+  }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(232, 255, 0, 0.08) 50%, transparent 100%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .section-card:hover::before {
+    transform: translateX(120%);
+  }
+
+  .section-button {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(232, 255, 0, 0.24);
+    box-shadow: 0 10px 30px rgba(232, 255, 0, 0.12);
+  }
+
+  .section-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+  }
+
+  .section-button:hover::before {
+    transform: translateX(120%);
+  }
+
+  .section-button-outline {
+    border: 1px solid rgba(232, 255, 0, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  section {
+    position: relative;
+    background-color: #000000;
+  }
+
+  section:nth-child(even) {
+    background-color: #0a0a0a;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2c2c2c, transparent);
+    opacity: 0.3;
+  }
+
+  section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2c2c2c, transparent);
+    opacity: 0.3;
+  }
+
+  .product-card {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(232, 255, 0, 0.1);
+  }
+
+  button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+  }
+
+  button:hover::before {
+    left: 100%;
+  }
+
+  input,
+  textarea {
+    background-color: #1a1a1a;
+    border-color: #2c2c2c;
+    color: #f5f5f0;
+    transition: all 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    background-color: #141414;
+    border-color: #E8FF00;
+    box-shadow: 0 0 20px rgba(232, 255, 0, 0.2);
+    outline: none;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #E8FF00, #f5f5f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(232, 255, 0, 0.3);
+    border-color: #E8FF00;
+  }
+
+  a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #E8FF00;
+    transition: width 0.3s ease;
+  }
+
+  a:hover::after {
+    width: 100%;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #E8FF00;
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .badge-outline {
+    border: 1px solid #E8FF00;
+    color: #E8FF00;
+    background-color: transparent;
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-border-gradient {
+    position: relative;
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(#0a0a0a, #0a0a0a),
+      linear-gradient(135deg, #E8FF00, #8C8C8C);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+}
+
+/* Keyframes are global by nature and don't need a layer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
