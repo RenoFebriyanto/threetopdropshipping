@@ -1,0 +1,164 @@
+{%- comment -%}
+  Section: main-sustainability.liquid
+  Page: Sustainability — converted from sustainability.html reference design
+  Uses semantic CSS classes from application.css + existing compiled Tailwind utilities
+{%- endcomment -%}
+
+<div class="sustain-page">
+
+  {%- comment -%} ── SECTION 1: Hero — Asymmetric Split-Screen ── {%- endcomment -%}
+  <section class="sustain-hero">
+    <div class="sustain-hero-inner">
+
+      {%- comment -%} Left: Headline + Stats + Body {%- endcomment -%}
+      <div class="sustain-hero-left">
+        <h1 class="sustain-hero-title">
+          Commitment to<br>
+          <span class="sustain-hero-title-italic">Tomorrow.</span>
+        </h1>
+
+        <div class="sustain-stats-grid">
+          <div>
+            <p class="sustain-stat-number">98%</p>
+            <p class="sustain-stat-label">Organic Materials</p>
+          </div>
+          <div>
+            <p class="sustain-stat-number">0%</p>
+            <p class="sustain-stat-label">Production Waste</p>
+          </div>
+        </div>
+
+        <p class="sustain-hero-body">
+          {%- if section.settings.hero_description != blank -%}
+            {{ section.settings.hero_description }}
+          {%- else -%}
+            We believe true luxury lies in preservation. Every garment is a testament to architectural precision and ecological responsibility.
+          {%- endif -%}
+        </p>
+      </div>
+
+      {%- comment -%} Right: Texture Image {%- endcomment -%}
+      <div class="sustain-hero-image-wrap">
+        <img
+          src="{{ 'sustainability-texture-1.jpg' | asset_url }}"
+          alt="Detailed close-up of natural, unbleached organic linen fabric showing the intricate weave and subtle texture variations."
+          class="sustain-hero-img"
+          loading="eager"
+        >
+      </div>
+
+    </div>
+  </section>
+
+  {%- comment -%} ── SECTION 2: Core Materials — Infographic Grid ── {%- endcomment -%}
+  <section class="sustain-materials">
+    <div class="sustain-materials-inner">
+
+      <div class="sustain-section-header">
+        <h2 class="sustain-section-title">Core Materials</h2>
+        <p class="sustain-section-subtitle">Sourced with absolute transparency and refined to our exacting standards.</p>
+      </div>
+
+      <div class="sustain-pillars-grid">
+
+        {%- comment -%} Pillar 1: Recycled Silk {%- endcomment -%}
+        <div class="sustain-pillar">
+          <span class="material-symbols-outlined sustain-pillar-icon">recycling</span>
+          <h3 class="sustain-pillar-title">Recycled Silk</h3>
+          <p class="sustain-pillar-body">
+            Salvaged from pre-consumer waste, our silk retains the fluid drape and structural integrity of virgin fibers while eliminating the need for raw extraction.
+          </p>
+        </div>
+
+        {%- comment -%} Pillar 2: Organic Cotton {%- endcomment -%}
+        <div class="sustain-pillar">
+          <span class="material-symbols-outlined sustain-pillar-icon">eco</span>
+          <h3 class="sustain-pillar-title">Organic Cotton</h3>
+          <p class="sustain-pillar-body">
+            Cultivated without synthetic pesticides or fertilizers, our cotton supports soil health and provides a crisp, breathable foundation for everyday silhouettes.
+          </p>
+        </div>
+
+        {%- comment -%} Pillar 3: Regenerative Wool {%- endcomment -%}
+        <div class="sustain-pillar">
+          <span class="material-symbols-outlined sustain-pillar-icon">grass</span>
+          <h3 class="sustain-pillar-title">Regenerative Wool</h3>
+          <p class="sustain-pillar-body">
+            Sourced from farms practicing holistic grazing, our wool sequesters carbon back into the soil, offering warmth with a net-positive environmental footprint.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── SECTION 3: Supply Chain Transparency ── {%- endcomment -%}
+  <section class="sustain-supply">
+    <div class="sustain-supply-inner">
+
+      {%- comment -%} Left: Editorial Image {%- endcomment -%}
+      <div class="sustain-supply-image-wrap">
+        <img
+          src="{{ 'sustainability-thread-2.jpg' | asset_url }}"
+          alt="A minimalist editorial photograph of a spool of unbleached thread resting on a pristine white architectural block, illuminated by soft, natural studio lighting."
+          class="sustain-supply-img"
+          loading="lazy"
+        >
+      </div>
+
+      {%- comment -%} Right: Transparency Data {%- endcomment -%}
+      <div class="sustain-supply-content">
+        <h2 class="sustain-supply-title">Supply Chain Transparency</h2>
+
+        <div class="sustain-supply-items">
+
+          <div class="sustain-supply-item">
+            <div class="sustain-supply-item-row">
+              <h4 class="sustain-supply-item-label">Traceability</h4>
+              <span class="sustain-supply-item-value">Tier 1 &amp; 2</span>
+            </div>
+            <p class="sustain-supply-item-desc">100% mapped and audited factories.</p>
+          </div>
+
+          <div class="sustain-supply-item">
+            <div class="sustain-supply-item-row">
+              <h4 class="sustain-supply-item-label">Water Stewardship</h4>
+              <span class="sustain-supply-item-value">-40% Usage</span>
+            </div>
+            <p class="sustain-supply-item-desc">Implementation of closed-loop dyeing systems.</p>
+          </div>
+
+          <div class="sustain-supply-item">
+            <div class="sustain-supply-item-row">
+              <h4 class="sustain-supply-item-label">Carbon Emissions</h4>
+              <span class="sustain-supply-item-value">Scope 1, 2, 3</span>
+            </div>
+            <p class="sustain-supply-item-desc">Committed to net-zero by 2030 across all operations.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Sustainability Page",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "We believe true luxury lies in preservation. Every garment is a testament to architectural precision and ecological responsibility."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability Page"
+    }
+  ]
+}
+{% endschema %}

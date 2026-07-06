@@ -663,3 +663,404 @@ button {
   background: #1a1c1c;
   color: #fff;
 }
+
+/* ==========================================================================
+   Sustainability Page
+   ========================================================================== */
+
+/* ── Page Wrapper ── */
+.sustain-page {
+  padding-top: 80px; /* offset for fixed header (h-20 = 80px) */
+  padding-bottom: 120px;
+}
+
+/* ==========================================================================
+   Section 1: Hero — Asymmetric Split-Screen
+   ========================================================================== */
+
+.sustain-hero {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 96px 80px 120px;
+}
+
+@media (max-width: 1023px) {
+  .sustain-hero {
+    padding: 64px 40px 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sustain-hero {
+    padding: 48px 20px 64px;
+  }
+}
+
+/* Two-column flex row */
+.sustain-hero-inner {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .sustain-hero-inner {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+/* Left column: 60% */
+.sustain-hero-left {
+  width: 60%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 48px;
+}
+
+@media (max-width: 767px) {
+  .sustain-hero-left {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+/* Display headline */
+.sustain-hero-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #1a1c1c;
+  margin: 0 0 32px;
+}
+
+/* Italic "Tomorrow." span */
+.sustain-hero-title-italic {
+  font-style: italic;
+  color: #7e7576; /* matches --outline color */
+}
+
+/* Stats grid (2-col) */
+.sustain-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(207, 196, 197, 0.3); /* outline-variant/30 */
+}
+
+@media (max-width: 479px) {
+  .sustain-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.sustain-stat-number {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #1a1c1c;
+  margin: 0;
+}
+
+.sustain-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4c4546;
+  margin: 8px 0 0;
+}
+
+/* Hero body copy */
+.sustain-hero-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: #4c4546;
+  margin-top: 48px;
+  max-width: 480px;
+}
+
+@media (max-width: 767px) {
+  .sustain-hero-body {
+    font-size: 16px;
+    margin-top: 32px;
+    max-width: 100%;
+  }
+}
+
+/* Right column image: 40% */
+.sustain-hero-image-wrap {
+  flex: 1;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: #f3f3f3;
+}
+
+@media (max-width: 767px) {
+  .sustain-hero-image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.sustain-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 1s ease;
+}
+
+.sustain-hero-img:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Section 2: Core Materials — Infographic Pillars
+   ========================================================================== */
+
+.sustain-materials {
+  background-color: #ffffff;
+  padding: 120px 0;
+  border-top: 1px solid rgba(207, 196, 197, 0.3);
+  border-bottom: 1px solid rgba(207, 196, 197, 0.3);
+}
+
+.sustain-materials-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+@media (max-width: 1023px) {
+  .sustain-materials-inner {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sustain-materials {
+    padding: 80px 0;
+  }
+  .sustain-materials-inner {
+    padding: 0 20px;
+  }
+}
+
+/* Centered heading */
+.sustain-section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.sustain-section-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #1a1c1c;
+  margin: 0 0 16px;
+}
+
+.sustain-section-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4c4546;
+  margin: 0 auto;
+  max-width: 672px; /* max-w-2xl */
+}
+
+/* 3-column pillars grid */
+.sustain-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 24px;
+}
+
+@media (max-width: 767px) {
+  .sustain-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* Single pillar */
+.sustain-pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 1px solid rgba(207, 196, 197, 0.3);
+  padding-left: 24px;
+}
+
+.sustain-pillar-icon {
+  font-size: 32px;
+  color: #1a1c1c;
+  margin-bottom: 24px;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.sustain-pillar-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #1a1c1c;
+  margin: 0 0 16px;
+}
+
+.sustain-pillar-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #4c4546;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Section 3: Supply Chain Transparency
+   ========================================================================== */
+
+.sustain-supply {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 120px 80px;
+}
+
+@media (max-width: 1023px) {
+  .sustain-supply {
+    padding: 80px 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sustain-supply {
+    padding: 64px 20px;
+  }
+}
+
+/* 2-column grid */
+.sustain-supply-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .sustain-supply-inner {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}
+
+/* Image — left on desktop (order-2 lg:order-1 pattern) */
+.sustain-supply-image-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  order: 2;
+}
+
+@media (max-width: 1023px) {
+  .sustain-supply-image-wrap {
+    order: 2; /* image below on mobile */
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+.sustain-supply-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Content — right on desktop (order-1 lg:order-2 pattern) */
+.sustain-supply-content {
+  order: 1;
+  padding-left: 0;
+}
+
+@media (min-width: 1024px) {
+  .sustain-supply-content {
+    padding-left: 48px;
+  }
+}
+
+.sustain-supply-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #1a1c1c;
+  margin: 0 0 48px;
+}
+
+/* Stacked data rows */
+.sustain-supply-items {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sustain-supply-item {
+  border-bottom: 1px solid rgba(207, 196, 197, 0.3);
+  padding-bottom: 16px;
+}
+
+.sustain-supply-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.sustain-supply-item-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a1c1c;
+  margin: 0;
+}
+
+.sustain-supply-item-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4c4546;
+}
+
+.sustain-supply-item-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4c4546;
+  margin: 0;
+}
