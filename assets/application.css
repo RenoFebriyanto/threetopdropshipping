@@ -148,26 +148,91 @@ button {
 }
 
 /* ==========================================================================
-   Home Page — home-card & teaser section
-   Matches home-page.html reference
+   Home Page — Curated Pieces grid & home-card
+   Matches home-page.html reference exactly
    ========================================================================== */
 
-/* ── Home Product Card (Curated Pieces grid) ── */
-/* Uses same classes as HTML reference: group flex flex-col gap-4 */
-
-/* Image wrapper: aspect-[3/4], no radius, overflow-hidden */
-.home-card .home-card-image-wrap,
-.home-card > div:first-child {
-  /* aspect-ratio set inline via Tailwind class aspect-[3/4] in the HTML */
+/* ── 4-column product grid (2 on mobile, 4 on desktop) ── */
+.home-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 32px;
 }
 
-/* Quick Add overlay button already styled via compiled Tailwind:
-   bg-primary text-on-primary — falls back to these inline definitions */
+@media (max-width: 1023px) {
+  .home-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+  }
+}
 
-/* ── Curated Essentials Teaser ── */
-/* py-stack-xl = 120px, bg-surface = #f9f9f9, text-center */
-/* All styles handled by compiled Tailwind classes already in theme.css */
-/* No additional custom CSS needed for this section */
+/* ── Home product card ── */
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Image area: aspect 3:4, no radius, overflow hidden */
+.home-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.home-card:hover .home-card-image {
+  transform: scale(1.05);
+}
+
+/* Quick Add overlay — hidden by default, visible on hover desktop */
+.home-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-card:hover .home-card-overlay {
+  opacity: 1;
+}
+
+/* Info row below image */
+.home-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.home-card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #1a1c1c;
+  margin: 0;
+}
+
+.home-card-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #4c4546;
+  margin: 0;
+}
+
+/* View All button */
+.home-view-all-wrap {
+  margin-top: 48px;
+  text-align: center;
+}
 
 /* ==========================================================================
    Collection Page — coll-* semantic classes

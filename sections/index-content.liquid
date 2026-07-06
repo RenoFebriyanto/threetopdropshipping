@@ -36,61 +36,59 @@
 </section>
 
 <!-- ====== FEATURED COLLECTION SECTION ====== -->
-<section class="py-stack-xl bg-background px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-  <div class="mb-12">
-    <h2 class="font-headline-lg text-headline-lg text-primary uppercase tracking-wider">
-      {{ section.settings.collection_title }}
-    </h2>
+<section style="padding: 120px 80px; background-color: #f9f9f9; max-width: 1440px; margin: 0 auto;">
+  <div style="margin-bottom: 48px;">
+    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: #1a1c1c; margin: 0;">{{ section.settings.collection_title }}</h2>
   </div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+  <div class="home-product-grid">
     {% assign featured = collections[section.settings.collection] %}
     {% assign products_source = featured.products %}
     {% if featured == blank or featured.products.size == 0 %}
       {% assign products_source = collections.all.products %}
     {% endif %}
     {% for product in products_source limit: 4 %}
-      <div class="home-card group flex flex-col gap-4">
-        <div class="relative aspect-[3/4] overflow-hidden bg-surface-container">
+      <div class="home-card">
+        <div style="position: relative; aspect-ratio: 3/4; overflow: hidden; background-color: #eeeeee;">
           <a href="{{ product.url }}">
             {% if product.featured_image %}
               <img
                 src="{{ product.featured_image | image_url: width: 600 }}"
                 alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                class="home-card-image"
                 width="600" height="800" loading="lazy"
               >
             {% else %}
-              <div class="w-full h-full bg-surface-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-outline-variant" style="font-size:48px">image</span>
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#cfc4c5;">
+                <span class="material-symbols-outlined" style="font-size:48px">image</span>
               </div>
             {% endif %}
           </a>
-          <div class="absolute inset-0 flex items-end justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
-            <form method="post" action="/cart/add">
+          <div class="home-card-overlay">
+            <form method="post" action="/cart/add" style="width:100%;">
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <input type="hidden" name="quantity" value="1">
-              <button type="submit" class="w-full py-3 px-8 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-colors duration-300">
+              <button type="submit" style="width:100%;padding:12px;background:#1a1c1c;color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">
                 Quick Add
               </button>
             </form>
           </div>
         </div>
-        <div class="flex flex-col gap-1">
-          <h3 class="font-body-md text-body-md text-on-surface">
-            <a href="{{ product.url }}" class="hover:underline underline-offset-4 decoration-1">{{ product.title }}</a>
+        <div class="home-card-info">
+          <h3 class="home-card-title">
+            <a href="{{ product.url }}" style="color:inherit;text-decoration:none;">{{ product.title }}</a>
           </h3>
-          <p class="font-label-sm text-label-sm text-on-surface-variant">{{ product.price | money }}</p>
-          <form method="post" action="/cart/add" class="md:hidden mt-2">
+          <p class="home-card-price">{{ product.price | money }}</p>
+          <form method="post" action="/cart/add" style="display:none;" class="home-card-mobile-add">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
             <input type="hidden" name="quantity" value="1">
-            <button type="submit" class="text-left font-label-sm text-label-sm text-primary underline">Quick Add</button>
+            <button type="submit" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#1a1c1c;text-decoration:underline;background:none;border:none;cursor:pointer;padding:0;margin-top:8px;">Quick Add</button>
           </form>
         </div>
       </div>
     {% endfor %}
   </div>
-  <div class="mt-12 text-center">
-    <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="inline-flex items-center justify-center px-10 py-4 border border-primary text-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-all duration-300 ease-out">
+  <div style="margin-top: 48px; text-align: center;">
+    <a href="{{ section.settings.button_link | default: '/collections/all' }}" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 40px;border:1px solid #1a1c1c;color:#1a1c1c;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background 0.3s ease, color 0.3s ease;">
       View All
     </a>
   </div>
@@ -128,9 +126,9 @@
 </section>
 
 <!-- ====== CURATED ESSENTIALS TEASER SECTION ====== -->
-<section class="py-stack-xl bg-surface px-margin-mobile md:px-margin-desktop text-center">
-  <h2 class="font-headline-lg text-headline-lg text-primary mb-6">{{ section.settings.teaser_heading }}</h2>
-  <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+<section style="padding: 120px 80px; background-color: #f9f9f9; text-align: center;">
+  <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 400; color: #1a1c1c; margin: 0 0 24px;">{{ section.settings.teaser_heading }}</h2>
+  <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #4c4546; max-width: 672px; margin: 0 auto;">
     {{ section.settings.teaser_text }}
   </p>
   {% if section.settings.teaser_button_label != blank %}
