@@ -1,143 +1,176 @@
 <!-- ====== HERO SECTION ====== -->
-<section class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-  <!-- Background Image -->
-  <div class="absolute inset-0 w-full h-full">
+<section style="position:relative;width:100%;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+  <!-- Background -->
+  <div style="position:absolute;inset:0;width:100%;height:100%;">
     {% if section.settings.bg_image != blank %}
       <img
         src="{{ section.settings.bg_image | image_url: width: 1920 }}"
         alt="{{ section.settings.title | escape }}"
-        class="absolute inset-0 w-full h-full object-cover"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
         width="1920" height="1080"
         loading="eager"
       >
     {% else %}
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');"></div>
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');background-size:cover;background-position:center;"></div>
     {% endif %}
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/50"></div>
+    <!-- Gradient overlay -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.5) 100%);"></div>
   </div>
 
-  <!-- Hero Content -->
-  <div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center gap-6 md:gap-8">
-    <span class="font-label-sm text-label-sm text-on-primary tracking-[0.2em] uppercase opacity-90">
+  <!-- Content -->
+  <div style="position:relative;z-index:10;text-align:center;padding:0 80px;max-width:896px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;">
+    <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;opacity:0.9;display:block;">
       {{ section.settings.subtitle }}
     </span>
-    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary leading-tight">
+    <h1 style="font-family:'Bodoni Moda',serif;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:#ffffff;margin:0;">
       {{ section.settings.title }}
     </h1>
-    <p class="font-body-lg text-body-lg text-[rgba(255,255,255,0.9)] max-w-2xl mx-auto">
+    <p style="font-family:'Inter',sans-serif;font-size:18px;font-weight:300;line-height:1.6;letter-spacing:0.01em;color:rgba(255,255,255,0.9);max-width:672px;margin:0;">
       {{ section.settings.text }}
     </p>
-    <div class="mt-4">
-      <a href="{{ section.settings.button_link }}" class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out">
+    <div style="margin-top:8px;">
+      <a href="{{ section.settings.button_link }}" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 40px;background-color:#1a1c1c;color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;transition:background-color 0.3s ease;">
         {{ section.settings.button_label }}
       </a>
     </div>
   </div>
 </section>
 
-<!-- ====== FEATURED COLLECTION SECTION ====== -->
-<section style="padding: 120px 80px; background-color: #f9f9f9; max-width: 1440px; margin: 0 auto;">
-  <div style="margin-bottom: 48px;">
-    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: #1a1c1c; margin: 0;">{{ section.settings.collection_title }}</h2>
-  </div>
-  <div class="home-product-grid">
-    {% assign featured = collections[section.settings.collection] %}
-    {% assign products_source = featured.products %}
-    {% if featured == blank or featured.products.size == 0 %}
-      {% assign products_source = collections.all.products %}
-    {% endif %}
-    {% for product in products_source limit: 4 %}
-      <div class="home-card">
-        <div style="position: relative; aspect-ratio: 3/4; overflow: hidden; background-color: #eeeeee;">
-          <a href="{{ product.url }}">
-            {% if product.featured_image %}
-              <img
-                src="{{ product.featured_image | image_url: width: 600 }}"
-                alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                class="home-card-image"
-                width="600" height="800" loading="lazy"
-              >
-            {% else %}
-              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#cfc4c5;">
-                <span class="material-symbols-outlined" style="font-size:48px">image</span>
+<!-- ====== CURATED PIECES — Featured Products Grid ====== -->
+<section class="home-featured-section">
+  <div style="max-width:1440px;margin:0 auto;">
+
+    <div style="margin-bottom:48px;">
+      <h2 style="font-family:'Bodoni Moda',serif;font-size:32px;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:#1a1c1c;margin:0;">
+        {{ section.settings.collection_title }}
+      </h2>
+    </div>
+
+    <!-- 4-col product grid -->
+    <div class="home-product-grid">
+      {%- assign featured_coll = collections[section.settings.collection] -%}
+      {%- if featured_coll != blank and featured_coll.products.size > 0 -%}
+        {%- assign products_source = featured_coll.products -%}
+      {%- else -%}
+        {%- assign products_source = collections.all.products -%}
+      {%- endif -%}
+
+      {%- for product in products_source limit: 4 -%}
+        <div class="home-card" style="position:relative;">
+          <!-- Image wrapper: aspect 3:4 -->
+          <div style="position:relative;width:100%;padding-bottom:133.33%;overflow:hidden;background-color:#eeeeee;">
+            <div style="position:absolute;inset:0;">
+              <a href="{{ product.url }}" style="display:block;width:100%;height:100%;">
+                {%- if product.featured_image -%}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 600 }}"
+                    alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                    class="home-card-image"
+                    width="600" height="800"
+                    loading="lazy"
+                    style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.4s ease;"
+                  >
+                {%- else -%}
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#cfc4c5;">
+                    <span class="material-symbols-outlined" style="font-size:48px;">image</span>
+                  </div>
+                {%- endif -%}
+              </a>
+              <!-- Quick Add overlay (desktop hover) -->
+              <div class="home-card-overlay" style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:16px;opacity:0;transition:opacity 0.3s ease;">
+                <form method="post" action="/cart/add" style="width:100%;">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button type="submit" style="width:100%;padding:12px;background:#1a1c1c;color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">
+                    Quick Add
+                  </button>
+                </form>
               </div>
-            {% endif %}
-          </a>
-          <div class="home-card-overlay">
-            <form method="post" action="/cart/add" style="width:100%;">
-              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" style="width:100%;padding:12px;background:#1a1c1c;color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">
-                Quick Add
-              </button>
-            </form>
+            </div>
+          </div>
+
+          <!-- Card info -->
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:4px;">
+            <h3 style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:#1a1c1c;margin:0;">
+              <a href="{{ product.url }}" style="color:inherit;text-decoration:none;">{{ product.title }}</a>
+            </h3>
+            <p style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#4c4546;margin:0;">
+              {{ product.price | money }}
+            </p>
           </div>
         </div>
-        <div class="home-card-info">
-          <h3 class="home-card-title">
-            <a href="{{ product.url }}" style="color:inherit;text-decoration:none;">{{ product.title }}</a>
-          </h3>
-          <p class="home-card-price">{{ product.price | money }}</p>
-          <form method="post" action="/cart/add" style="display:none;" class="home-card-mobile-add">
-            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-            <input type="hidden" name="quantity" value="1">
-            <button type="submit" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#1a1c1c;text-decoration:underline;background:none;border:none;cursor:pointer;padding:0;margin-top:8px;">Quick Add</button>
-          </form>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-  <div style="margin-top: 48px; text-align: center;">
-    <a href="{{ section.settings.button_link | default: '/collections/all' }}" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 40px;border:1px solid #1a1c1c;color:#1a1c1c;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background 0.3s ease, color 0.3s ease;">
-      View All
-    </a>
+      {%- endfor -%}
+    </div>
+
+    <!-- View All button -->
+    <div style="margin-top:48px;text-align:center;">
+      <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="home-cta-btn" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 40px;border:1px solid #1a1c1c;color:#1a1c1c;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;background:transparent;transition:background 0.3s ease,color 0.3s ease;">
+        View All
+      </a>
+    </div>
+
   </div>
 </section>
 
-<!-- ====== BRAND STORY SECTION ====== -->
-<section class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] overflow-hidden">
-  <div class="relative aspect-[3/4] md:aspect-auto h-full">
-    {% if section.settings.story_image != blank %}
-      <img src="{{ section.settings.story_image | image_url: width: 900 }}" alt="{{ section.settings.story_heading | escape }}" class="absolute inset-0 w-full h-full object-cover" width="900" height="1200" loading="lazy">
-    {% else %}
-      <div class="absolute inset-0 bg-surface-container flex items-center justify-center">
-        <span class="material-symbols-outlined text-outline-variant" style="font-size:64px">image</span>
+<!-- ====== CRAFTED FOR LONGEVITY — Brand Story ====== -->
+<section class="home-brand-story-section">
+
+  <!-- Left: Image -->
+  <div class="home-brand-story-image">
+    {%- if section.settings.story_image != blank -%}
+      <img
+        src="{{ section.settings.story_image | image_url: width: 900 }}"
+        alt="{{ section.settings.story_heading | escape }}"
+        width="900" height="1200"
+        loading="lazy"
+      >
+    {%- else -%}
+      <div style="position:absolute;inset:0;background-color:#eeeeee;display:flex;align-items:center;justify-content:center;">
+        <span class="material-symbols-outlined" style="font-size:64px;color:#cfc4c5;">image</span>
       </div>
-    {% endif %}
+    {%- endif -%}
   </div>
-  <div class="flex flex-col justify-center p-12 md:p-margin-desktop bg-[#FBF9F6] text-on-surface">
-    <div class="max-w-xl">
-      <h2 class="font-headline-lg text-headline-lg uppercase tracking-wider mb-8">{{ section.settings.story_heading }}</h2>
-      <div class="flex flex-col gap-6 font-body-md text-on-surface-variant">
+
+  <!-- Right: Content -->
+  <div class="home-brand-story-content">
+    <div style="max-width:480px;">
+      <h2 style="font-family:'Bodoni Moda',serif;font-size:32px;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:#1a1c1c;margin:0 0 32px;">
+        {{ section.settings.story_heading }}
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:24px;font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:#4c4546;">
         {{ section.settings.story_text }}
       </div>
-      {% if section.blocks.size > 0 %}
-        <div class="mt-12 pt-8 border-t border-outline-variant flex flex-wrap gap-8">
-          {% for block in section.blocks %}
-            <div class="flex items-center gap-2" {{ block.shopify_attributes }}>
-              <span class="material-symbols-outlined" style="font-size:20px">{{ block.settings.icon }}</span>
-              <span class="font-label-sm text-label-sm uppercase tracking-widest">{{ block.settings.label }}</span>
+
+      {%- if section.blocks.size > 0 -%}
+        <div style="margin-top:48px;padding-top:32px;border-top:1px solid #cfc4c5;display:flex;flex-wrap:wrap;gap:32px;">
+          {%- for block in section.blocks -%}
+            <div style="display:flex;align-items:center;gap:8px;" {{ block.shopify_attributes }}>
+              <span class="material-symbols-outlined" style="font-size:20px;color:#1a1c1c;">{{ block.settings.icon }}</span>
+              <span style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#1a1c1c;">{{ block.settings.label }}</span>
             </div>
-          {% endfor %}
+          {%- endfor -%}
         </div>
-      {% endif %}
+      {%- endif -%}
     </div>
   </div>
+
 </section>
 
-<!-- ====== CURATED ESSENTIALS TEASER SECTION ====== -->
-<section style="padding: 120px 80px; background-color: #f9f9f9; text-align: center;">
-  <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 400; color: #1a1c1c; margin: 0 0 24px;">{{ section.settings.teaser_heading }}</h2>
-  <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #4c4546; max-width: 672px; margin: 0 auto;">
+<!-- ====== CURATED ESSENTIALS TEASER ====== -->
+<section class="home-teaser-section">
+  <h2 style="font-family:'Bodoni Moda',serif;font-size:32px;font-weight:400;color:#1a1c1c;margin:0 0 24px;">
+    {{ section.settings.teaser_heading }}
+  </h2>
+  <p style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:#4c4546;max-width:672px;margin:0 auto;">
     {{ section.settings.teaser_text }}
   </p>
-  {% if section.settings.teaser_button_label != blank %}
-    <div class="mt-8">
-      <a href="{{ section.settings.teaser_button_link | default: '/collections/all' }}" class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out">
+  {%- if section.settings.teaser_button_label != blank -%}
+    <div style="margin-top:32px;">
+      <a href="{{ section.settings.teaser_button_link | default: '/collections/all' }}" class="home-cta-btn" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 40px;background:#1a1c1c;color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
         {{ section.settings.teaser_button_label }}
       </a>
     </div>
-  {% endif %}
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -169,7 +202,7 @@
       "type": "textarea",
       "id": "text",
       "label": "Hero Body Text",
-      "default": "Discover our latest collection crafted from 100% sustainable premium silk and organic cotton."
+      "default": "Discover our latest collection crafted from 100% sustainable premium silk and organic cotton, designed for the modern conscious wardrobe."
     },
     {
       "type": "text",

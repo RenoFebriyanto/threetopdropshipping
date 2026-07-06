@@ -234,6 +234,101 @@ button {
   text-align: center;
 }
 
+/* ── Responsive: Home sections on mobile ── */
+
+/* Featured Products: shrink padding on tablet/mobile */
+@media (max-width: 767px) {
+  /* Targets the section[style] approach — JS handles this via class */
+  .home-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Brand Story: stacks to 1 column on mobile */
+.home-brand-story-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.home-brand-story-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-brand-story-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-brand-story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  background-color: #FBF9F6;
+  color: #1a1c1c;
+}
+
+@media (max-width: 767px) {
+  .home-brand-story-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-brand-story-image {
+    aspect-ratio: 4 / 3;
+    min-height: 280px;
+  }
+
+  .home-brand-story-content {
+    padding: 48px 20px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .home-brand-story-content {
+    padding: 60px 40px;
+  }
+}
+
+/* ── Home featured collection section — responsive padding ── */
+.home-featured-section {
+  padding: 120px 80px;
+  background-color: #f9f9f9;
+}
+
+.home-teaser-section {
+  padding: 120px 80px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+@media (max-width: 1023px) {
+  .home-featured-section,
+  .home-teaser-section {
+    padding: 80px 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-featured-section,
+  .home-teaser-section {
+    padding: 64px 20px;
+  }
+}
+
+/* View All / CTA hover */
+.home-cta-btn:hover {
+  background-color: #1a1c1c !important;
+  color: #ffffff !important;
+}
+
 /* ==========================================================================
    Collection Page — coll-* semantic classes
    Matches our-collection.html reference exactly
