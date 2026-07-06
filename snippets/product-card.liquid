@@ -1,57 +1,34 @@
-<article class="product-card group">
+<a class="coll-card group" href="{{ product.url }}">
 
-  {%- comment -%} ─── Product Image ─── {%- endcomment -%}
-  <div class="pc-image-wrap">
-    <a href="{{ product.url }}" class="pc-image-link" aria-label="{{ product.title | escape }}">
-      {%- if product.featured_image -%}
-        <img
-          src="{{ product.featured_image | image_url: width: 600 }}"
-          alt="{{ product.featured_image.alt | default: product.title | escape }}"
-          width="600"
-          height="800"
-          loading="lazy"
-          class="pc-img"
-        >
-      {%- else -%}
-        <div class="pc-img-placeholder">
-          <span class="material-symbols-outlined" style="font-size:48px">image</span>
-        </div>
-      {%- endif -%}
-    </a>
-
-    {%- comment -%} Quick Add Overlay — Desktop only {%- endcomment -%}
-    <div class="pc-quick-add-overlay">
-      <form method="post" action="/cart/add" class="pc-quick-add-form">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-        <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="pc-quick-add-btn">Quick Add</button>
-      </form>
-    </div>
+  {%- comment -%} ── Product Image: aspect-[4/5] ── {%- endcomment -%}
+  <div class="coll-card-image-wrap">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="600"
+        height="750"
+        loading="lazy"
+        class="coll-card-img"
+      >
+    {%- else -%}
+      <div class="coll-card-img-placeholder">
+        <span class="material-symbols-outlined" style="font-size:48px">image</span>
+      </div>
+    {%- endif -%}
+    <div class="coll-card-hover-overlay"></div>
   </div>
 
-  {%- comment -%} ─── Product Info ─── {%- endcomment -%}
-  <div class="pc-info">
-
-    {%- comment -%} Row 1: Title (left) + Price (right) {%- endcomment -%}
-    <div class="pc-info-row">
-      <h3 class="pc-title">
-        <a href="{{ product.url }}">{{ product.title }}</a>
-      </h3>
-      <span class="pc-price">{{ product.price | money }}</span>
+  {%- comment -%} ── Product Info: title+variant left, price right ── {%- endcomment -%}
+  <div class="coll-card-info">
+    <div>
+      <h3 class="coll-card-title">{{ product.title }}</h3>
+      {%- assign first_variant_title = product.variants.first.title -%}
+      {%- unless first_variant_title == 'Default Title' or first_variant_title == blank -%}
+        <p class="coll-card-variant">{{ first_variant_title }}</p>
+      {%- endunless -%}
     </div>
-
-    {%- comment -%} Row 2: Variant / Color subtitle {%- endcomment -%}
-    {%- assign first_variant_title = product.variants.first.title -%}
-    {%- unless first_variant_title == 'Default Title' or first_variant_title == blank -%}
-      <p class="pc-variant">{{ first_variant_title }}</p>
-    {%- endunless -%}
-
-    {%- comment -%} Quick Add — Mobile only {%- endcomment -%}
-    <form method="post" action="/cart/add" class="pc-quick-add-mobile">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <input type="hidden" name="quantity" value="1">
-      <button type="submit" class="pc-quick-add-mobile-btn">Quick Add</button>
-    </form>
-
+    <span class="coll-card-price">{{ product.price | money }}</span>
   </div>
-</article>
+
+</a>

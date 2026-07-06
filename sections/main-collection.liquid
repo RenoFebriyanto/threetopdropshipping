@@ -1,165 +1,174 @@
-<div class="collection-page">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
 
-  {%- comment -%} ─── Hero Header ─── {%- endcomment -%}
-  <header class="collection-header">
-    <h1 class="collection-title">Our Collection</h1>
-    <div class="collection-description">
-      {%- if collection.description != blank -%}
-        {{ collection.description }}
+  {%- comment -%} ── Hero Header ── {%- endcomment -%}
+  <header class="mb-stack-lg text-center md:text-left flex flex-col items-center md:items-start max-w-3xl">
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">
+      {%- if collection.title != blank -%}
+        {{ collection.title }}
       {%- else -%}
-        Curated essentials designed for the modern wardrobe. Explore a selection defined by architectural precision and understated luxury.
+        Our Collection
       {%- endif -%}
-    </div>
+    </h1>
+    {%- if collection.description != blank -%}
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">{{ collection.description }}</p>
+    {%- else -%}
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Curated essentials designed for the modern wardrobe. Explore a selection defined by architectural precision and understated luxury.</p>
+    {%- endif -%}
   </header>
 
-  {%- comment -%} ─── Two-Column Layout: Sidebar + Grid ─── {%- endcomment -%}
-  <div class="collection-layout">
+  <div class="flex flex-col md:flex-row gap-gutter">
 
-    {%- comment -%} ─── Left Sidebar Filters ─── {%- endcomment -%}
-    <aside class="collection-sidebar">
-      <form id="CollectionFiltersForm" class="collection-filters-form">
+    {%- comment -%} ── Sidebar Filters ── {%- endcomment -%}
+    <aside class="w-full md:w-64 flex-shrink-0 mb-stack-md md:mb-0">
+      <div class="coll-sidebar-sticky">
+        <form id="CollectionFiltersForm">
 
-        {%- if collection.sort_by -%}
-          <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
-        {%- endif -%}
+          {%- if collection.sort_by -%}
+            <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
+          {%- endif -%}
 
-        {%- for filter in collection.filters -%}
-          <div class="collection-filter-group">
-            <h3 class="filter-label">{{ filter.label }}</h3>
+          {%- for filter in collection.filters -%}
+            <div class="coll-filter-group">
 
-            {%- if filter.type == 'list' -%}
+              {%- comment -%} Filter heading {%- endcomment -%}
+              <h3 class="coll-filter-heading">{{ filter.label }}</h3>
 
-              {%- comment -%} Size Filter — Square Buttons {%- endcomment -%}
-              {%- if filter.label == 'Size' or filter.label == 'Ukuran' -%}
-                <div class="filter-size-grid">
-                  {%- for filter_value in filter.values -%}
-                    <label class="size-btn-label">
-                      <input
-                        type="checkbox"
-                        name="{{ filter_value.param_name }}"
-                        value="{{ filter_value.value }}"
-                        class="sr-only"
-                        {% if filter_value.active %}checked{% endif %}
-                        onchange="this.form.submit()"
-                      >
-                      <span class="size-btn{% if filter_value.active %} active{% endif %}">
-                        {{ filter_value.label }}
-                      </span>
-                    </label>
-                  {%- endfor -%}
-                </div>
+              {%- comment -%} LIST filters: Size, Color, or generic category {%- endcomment -%}
+              {%- if filter.type == 'list' -%}
 
-              {%- comment -%} Color Filter — Circular Swatches {%- endcomment -%}
-              {%- elsif filter.label == 'Color' or filter.label == 'Colour' or filter.label == 'Warna' -%}
-                <div class="filter-swatch-grid">
-                  {%- for filter_value in filter.values -%}
-                    <label class="swatch-label">
-                      <input
-                        type="checkbox"
-                        name="{{ filter_value.param_name }}"
-                        value="{{ filter_value.value }}"
-                        class="sr-only"
-                        {% if filter_value.active %}checked{% endif %}
-                        onchange="this.form.submit()"
-                      >
-                      <span
-                        class="color-swatch{% if filter_value.active %} active{% endif %}"
-                        aria-label="{{ filter_value.label }}"
-                        title="{{ filter_value.label }}"
-                        style="background-color: {{ filter_value.label | downcase | replace: ' ', '' }};"
-                      ></span>
-                    </label>
-                  {%- endfor -%}
-                </div>
-
-              {%- comment -%} Category / Generic List Filter — Checkboxes {%- endcomment -%}
-              {%- else -%}
-                <ul class="filter-checkbox-list">
-                  {%- for filter_value in filter.values -%}
-                    <li>
-                      <label class="filter-checkbox-label{% if filter_value.active %} active{% endif %}">
+                {%- if filter.label == 'Size' or filter.label == 'Ukuran' -%}
+                  {%- comment -%} Size — Square Buttons {%- endcomment -%}
+                  <div class="coll-size-grid">
+                    {%- for filter_value in filter.values -%}
+                      <label class="coll-size-label">
                         <input
                           type="checkbox"
                           name="{{ filter_value.param_name }}"
                           value="{{ filter_value.value }}"
-                          class="filter-checkbox-input"
+                          class="sr-only"
                           {% if filter_value.active %}checked{% endif %}
-                          onchange="this.form.submit()"
+                          onchange="this.closest('form').submit()"
                         >
-                        <span class="filter-checkbox-text">{{ filter_value.label }}</span>
+                        <span class="coll-size-btn{% if filter_value.active %} active{% endif %}">
+                          {{ filter_value.label }}
+                        </span>
                       </label>
-                    </li>
-                  {%- endfor -%}
-                </ul>
+                    {%- endfor -%}
+                  </div>
+
+                {%- elsif filter.label == 'Color' or filter.label == 'Colour' or filter.label == 'Warna' -%}
+                  {%- comment -%} Color — Circular Swatches {%- endcomment -%}
+                  <div class="coll-swatch-grid">
+                    {%- for filter_value in filter.values -%}
+                      <label class="coll-swatch-label">
+                        <input
+                          type="checkbox"
+                          name="{{ filter_value.param_name }}"
+                          value="{{ filter_value.value }}"
+                          class="sr-only"
+                          {% if filter_value.active %}checked{% endif %}
+                          onchange="this.closest('form').submit()"
+                        >
+                        <span
+                          class="coll-swatch{% if filter_value.active %} active{% endif %}"
+                          aria-label="{{ filter_value.label }}"
+                          title="{{ filter_value.label }}"
+                          style="background-color: {{ filter_value.label | downcase | replace: ' ', '' }};"
+                        ></span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+
+                {%- else -%}
+                  {%- comment -%} Generic/Category — Checkboxes {%- endcomment -%}
+                  <ul class="coll-checkbox-list">
+                    {%- for filter_value in filter.values -%}
+                      <li>
+                        <label class="coll-checkbox-label group">
+                          <input
+                            type="checkbox"
+                            name="{{ filter_value.param_name }}"
+                            value="{{ filter_value.value }}"
+                            class="coll-checkbox-input"
+                            {% if filter_value.active %}checked{% endif %}
+                            onchange="this.closest('form').submit()"
+                          >
+                          <span class="coll-checkbox-text{% if filter_value.active %} active{% endif %}">
+                            {{ filter_value.label }}
+                          </span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+
               {%- endif -%}
 
-            {%- endif -%}
-
-            {%- comment -%} Price Range Filter {%- endcomment -%}
-            {%- if filter.type == 'price_range' -%}
-              <div class="filter-price-range">
-                <div class="filter-price-input-wrap">
-                  <span class="filter-price-symbol">{{ cart.currency.symbol }}</span>
-                  <input
-                    type="number"
-                    name="{{ filter.min_value.param_name }}"
-                    {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                    placeholder="0"
-                    min="0"
-                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                    class="filter-price-input"
-                    onchange="this.form.submit()"
-                  >
+              {%- comment -%} PRICE RANGE filter {%- endcomment -%}
+              {%- if filter.type == 'price_range' -%}
+                <div class="coll-price-range">
+                  <div class="coll-price-field">
+                    <span class="coll-price-symbol">{{ cart.currency.symbol }}</span>
+                    <input
+                      type="number"
+                      name="{{ filter.min_value.param_name }}"
+                      {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                      placeholder="0"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      class="coll-price-input"
+                      onchange="this.closest('form').submit()"
+                    >
+                  </div>
+                  <span class="coll-price-sep">—</span>
+                  <div class="coll-price-field">
+                    <span class="coll-price-symbol">{{ cart.currency.symbol }}</span>
+                    <input
+                      type="number"
+                      name="{{ filter.max_value.param_name }}"
+                      {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                      placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      class="coll-price-input"
+                      onchange="this.closest('form').submit()"
+                    >
+                  </div>
                 </div>
-                <span class="filter-price-separator">—</span>
-                <div class="filter-price-input-wrap">
-                  <span class="filter-price-symbol">{{ cart.currency.symbol }}</span>
-                  <input
-                    type="number"
-                    name="{{ filter.max_value.param_name }}"
-                    {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                    placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                    min="0"
-                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                    class="filter-price-input"
-                    onchange="this.form.submit()"
-                  >
-                </div>
-              </div>
-            {%- endif -%}
+              {%- endif -%}
 
-          </div>
-        {%- endfor -%}
+            </div>
+          {%- endfor -%}
 
-      </form>
+        </form>
+      </div>
     </aside>
 
-    {%- comment -%} ─── Right: Product Grid ─── {%- endcomment -%}
-    <div class="collection-grid-area">
+    {%- comment -%} ── Product Grid ── {%- endcomment -%}
+    <div class="flex-1">
       {% paginate collection.products by section.settings.products_per_page %}
 
-        {%- comment -%} Empty state {%- endcomment -%}
         {%- assign products_to_loop = collection.products -%}
         {%- if products_to_loop.size == 0 and collection.handle == blank -%}
           {%- assign products_to_loop = collections.all.products -%}
         {%- endif -%}
 
         {%- if products_to_loop.size > 0 -%}
-          <div class="col-grid--3">
+          <div class="coll-product-grid">
             {%- for product in products_to_loop limit: section.settings.products_per_page -%}
               {% render 'product-card', product: product %}
             {%- endfor -%}
           </div>
         {%- else -%}
-          <div class="collection-empty">
+          <div class="coll-empty-state">
             <p>No products found in this collection.</p>
           </div>
         {%- endif -%}
 
-        {%- comment -%} ─── Load More Button ─── {%- endcomment -%}
+        {%- comment -%} ── Load More ── {%- endcomment -%}
         {%- if paginate.next -%}
-          <div class="load-more-wrap">
-            <a href="{{ paginate.next.url }}" class="btn-load-more" id="collection-load-more">
+          <div class="coll-load-more-wrap">
+            <a href="{{ paginate.next.url }}" class="coll-load-more-btn" id="collection-load-more">
               Load More
             </a>
           </div>
@@ -168,8 +177,9 @@
       {% endpaginate %}
     </div>
 
-  </div>{%- comment -%} /.collection-layout {%- endcomment -%}
-</div>{%- comment -%} /.collection-page {%- endcomment -%}
+  </div>
+
+</div>
 
 {% schema %}
 {
