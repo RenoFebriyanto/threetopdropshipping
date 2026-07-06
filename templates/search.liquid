@@ -1,0 +1,62 @@
+{% layout 'theme' %}
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-xl flex-grow min-h-[60vh]">
+  <header class="mb-stack-lg text-center flex flex-col items-center">
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Search Results</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8">
+      {% if search.performed %}
+        Showing results for "{{ search.terms | escape }}"
+      {% else %}
+        Enter a keyword to search our catalog.
+      {% endif %}
+    </p>
+    
+    <form action="{{ routes.search_url }}" method="get" role="search" class="w-full max-w-lg flex items-center border-b border-primary/30 focus-within:border-primary transition-colors">
+      <span class="material-symbols-outlined text-primary mr-3">search</span>
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, pages, articles..." class="w-full bg-transparent border-none py-3 font-body-md text-primary focus:ring-0 focus:outline-none placeholder:text-on-surface-variant/50">
+      <input type="hidden" name="options[prefix]" value="last">
+    </form>
+  </header>
+
+  {% if search.performed %}
+    {% if search.results_count == 0 %}
+      <div class="text-center mt-16 text-on-surface-variant font-body-lg">
+        <p>Your search for "{{ search.terms | escape }}" did not yield any results.</p>
+        <p class="mt-4">Please try another term or browse our <a href="/collections/all" class="text-primary hover:underline">collection</a>.</p>
+      </div>
+    {% else %}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 mt-12">
+        {% paginate search.results by 12 %}
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              <a class="group block cursor-pointer" href="{{ item.url }}">
+                <div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden relative">
+                  <img class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105" loading="lazy" src="{{ item.featured_image | image_url: width: 600 }}" alt="{{ item.title | escape }}"/>
+                  <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-body-md text-body-md text-primary mb-1 group-hover:underline underline-offset-4 decoration-1">{{ item.title }}</h3>
+                  </div>
+                  <span class="font-body-md text-body-md text-primary">{{ item.price | money }}</span>
+                </div>
+              </a>
+            {% else %}
+              <a class="group block cursor-pointer border border-outline-variant p-6 flex flex-col justify-center" href="{{ item.url }}">
+                <h3 class="font-headline-md text-headline-md text-primary mb-2">{{ item.title }}</h3>
+                <p class="font-body-md text-on-surface-variant">{{ item.content | strip_html | truncatewords: 20 }}</p>
+                <span class="mt-4 font-label-sm uppercase tracking-widest text-primary border-b border-primary self-start pb-1">Read More</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+          
+          {% if paginate.pages > 1 %}
+            <div class="mt-16 flex justify-center w-full col-span-full">
+                {{ paginate | default_pagination }}
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+    {% endif %}
+  {% endif %}
+</main>

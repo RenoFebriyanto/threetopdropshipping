@@ -1,0 +1,103 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: "class",
+  content: [
+    "./**/*.html",
+    "./layout/**/*.liquid",
+    "./templates/**/*.liquid",
+    "./sections/**/*.liquid",
+    "./snippets/**/*.liquid",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "primary":                    "#000000",
+        "on-primary":                 "#ffffff",
+        "primary-container":          "#1b1b1b",
+        "on-primary-container":       "#848484",
+        "primary-fixed":              "#e2e2e2",
+        "primary-fixed-dim":          "#c6c6c6",
+        "on-primary-fixed":           "#1b1b1b",
+        "on-primary-fixed-variant":   "#474747",
+        "secondary":                  "#5e5e5e",
+        "on-secondary":               "#ffffff",
+        "secondary-container":        "#e1dfdf",
+        "on-secondary-container":     "#626263",
+        "secondary-fixed":            "#e4e2e2",
+        "secondary-fixed-dim":        "#c7c6c6",
+        "on-secondary-fixed":         "#1b1c1c",
+        "on-secondary-fixed-variant": "#464747",
+        "tertiary":                   "#000000",
+        "on-tertiary":                "#ffffff",
+        "tertiary-container":         "#1a1c1c",
+        "on-tertiary-container":      "#838484",
+        "tertiary-fixed":             "#e3e2e2",
+        "tertiary-fixed-dim":         "#c7c6c6",
+        "on-tertiary-fixed":          "#1a1c1c",
+        "on-tertiary-fixed-variant":  "#464747",
+        "error":                      "#ba1a1a",
+        "on-error":                   "#ffffff",
+        "error-container":            "#ffdad6",
+        "on-error-container":         "#93000a",
+        "background":                 "#f9f9f9",
+        "on-background":              "#1a1c1c",
+        "surface":                    "#f9f9f9",
+        "on-surface":                 "#1a1c1c",
+        "surface-variant":            "#e2e2e2",
+        "on-surface-variant":         "#4c4546",
+        "surface-container-lowest":   "#ffffff",
+        "surface-container-low":      "#f3f3f3",
+        "surface-container":          "#eeeeee",
+        "surface-container-high":     "#e8e8e8",
+        "surface-container-highest":  "#e2e2e2",
+        "surface-bright":             "#f9f9f9",
+        "surface-dim":                "#dadada",
+        "surface-tint":               "#5e5e5e",
+        "outline":                    "#7e7576",
+        "outline-variant":            "#cfc4c5",
+        "inverse-surface":            "#2f3131",
+        "inverse-on-surface":         "#f1f1f1",
+        "inverse-primary":            "#c6c6c6"
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg:      "0.5rem",
+        xl:      "0.75rem",
+        full:    "9999px"
+      },
+      spacing: {
+        "unit":             "8px",
+        "gutter":           "24px",
+        "margin-mobile":    "20px",
+        "margin-tablet":    "40px",
+        "margin-desktop":   "80px",
+        "stack-md":         "48px",
+        "stack-lg":         "80px",
+        "stack-xl":         "120px",
+        "container-max":    "1440px"
+      },
+      fontFamily: {
+        "display-lg":        ["Bodoni Moda", "serif"],
+        "display-lg-mobile": ["Bodoni Moda", "serif"],
+        "headline-lg":       ["Bodoni Moda", "serif"],
+        "headline-md":       ["Bodoni Moda", "serif"],
+        "body-lg":           ["Inter", "sans-serif"],
+        "body-md":           ["Inter", "sans-serif"],
+        "label-sm":          ["Inter", "sans-serif"]
+      },
+      fontSize: {
+        "display-lg":        ["64px",  { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "400" }],
+        "display-lg-mobile": ["40px",  { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "400" }],
+        "headline-lg":       ["32px",  { lineHeight: "1.3", fontWeight: "400" }],
+        "headline-md":       ["24px",  { lineHeight: "1.4", fontWeight: "400" }],
+        "body-lg":           ["18px",  { lineHeight: "1.6", letterSpacing: "0.01em", fontWeight: "300" }],
+        "body-md":           ["16px",  { lineHeight: "1.6", fontWeight: "400" }],
+        "label-sm":          ["12px",  { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "500" }]
+      }
+    }
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/container-queries'),
+  ],
+}

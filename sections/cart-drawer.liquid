@@ -1,1 +1,218 @@
-{%- render 'cart-drawer' -%}
+<!-- ====== CART DRAWER OVERLAY ====== -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity duration-300 opacity-0" aria-hidden="true"></div>
+
+<!-- ====== CART DRAWER ====== -->
+<aside
+  id="cart-drawer"
+  class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col"
+  aria-label="Shopping cart"
+  aria-hidden="true"
+  role="dialog"
+>
+  <!-- Drawer Header -->
+  <div class="flex items-center justify-between px-6 py-6 border-b border-outline-variant">
+    <h2 class="font-headline-md text-headline-md text-primary" id="cart-drawer-count">
+      Your Bag ({{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %})
+    </h2>
+    <button type="button" id="cart-drawer-close" class="relative z-10 text-on-surface-variant hover:text-primary transition-colors" aria-label="Close cart">
+      <span class="material-symbols-outlined" style="font-size:24px">close</span>
+    </button>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="flex-1 overflow-y-auto px-6 py-6 space-y-8 no-scrollbar" id="cart-drawer-items">
+    {% if cart.item_count > 0 %}
+      {% for item in cart.items %}
+        <div class="flex gap-5 cart-line-item" data-key="{{ item.key }}">
+          <!-- Thumbnail -->
+          <a href="{{ item.url }}" class="w-24 h-32 bg-surface-container flex-shrink-0 overflow-hidden block">
+            {% if item.image %}
+              <img
+                src="{{ item.image | image_url: width: 200 }}"
+                alt="{{ item.title | escape }}"
+                width="200" height="267"
+                loading="lazy"
+                class="w-full h-full object-cover"
+              >
+            {% endif %}
+          </a>
+          <!-- Details -->
+          <div class="flex flex-col flex-grow justify-between py-1">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <a href="{{ item.url }}" class="font-label-sm text-label-sm uppercase text-primary hover:underline">{{ item.product.title }}</a>
+                <span class="font-body-md text-primary flex-shrink-0">{{ item.final_line_price | money }}</span>
+              </div>
+              {% unless item.variant.title == 'Default Title' %}
+                <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.variant.title }}</p>
+              {% endunless %}
+            </div>
+            <!-- Qty + Remove -->
+            <div class="flex justify-between items-center mt-3">
+              <div class="flex items-center border border-outline-variant h-8">
+                <button type="button" class="w-8 h-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors cart-qty-btn" data-key="{{ item.key }}" data-delta="-1" aria-label="Decrease quantity">
+                  <span class="material-symbols-outlined" style="font-size:16px">remove</span>
+                </button>
+                <span class="w-8 flex items-center justify-center font-label-sm text-label-sm text-primary cart-qty-display">{{ item.quantity }}</span>
+                <button type="button" class="w-8 h-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors cart-qty-btn" data-key="{{ item.key }}" data-delta="1" aria-label="Increase quantity">
+                  <span class="material-symbols-outlined" style="font-size:16px">add</span>
+                </button>
+              </div>
+              <button type="button" class="font-label-sm text-label-sm text-on-surface-variant hover:text-error underline transition-colors cart-remove-btn" data-key="{{ item.key }}">Remove</button>
+            </div>
+          </div>
+        </div>
+        {% unless forloop.last %}<hr class="border-outline-variant/40">{% endunless %}
+      {% endfor %}
+    {% else %}
+      <div class="h-full flex flex-col items-center justify-center text-center gap-4 py-24">
+        <span class="material-symbols-outlined text-outline-variant" style="font-size:56px">shopping_bag</span>
+        <p class="font-body-lg text-on-surface-variant">Your cart is empty.</p>
+        <button type="button" id="cart-continue-btn" class="mt-4 px-8 py-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-[#222222] transition-colors">
+          Continue Shopping
+        </button>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Footer: Subtotal + Checkout -->
+  {% if cart.item_count > 0 %}
+    <div class="px-6 py-6 border-t border-outline-variant bg-[#F9F9F9]" id="cart-drawer-footer">
+      <div class="flex justify-between items-center mb-4">
+        <span class="font-body-md text-on-surface-variant">Subtotal</span>
+        <span class="font-headline-md text-primary" id="cart-subtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="font-label-sm text-label-sm text-on-surface-variant text-center mb-5">Shipping &amp; taxes calculated at checkout</p>
+      <a href="{{ routes.cart_url }}" class="block w-full text-center bg-primary text-on-primary py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-[#222222] transition-colors duration-300">
+        View Cart
+      </a>
+      <a href="/checkout" class="block w-full text-center mt-3 border border-primary text-primary py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors duration-300">
+        Checkout
+      </a>
+    </div>
+  {% endif %}
+</aside>
+
+<!-- ====== CART DRAWER JAVASCRIPT ====== -->
+<script>
+(function () {
+  var drawer   = document.getElementById('cart-drawer');
+  var overlay  = document.getElementById('cart-overlay');
+  var closeBtn = document.getElementById('cart-drawer-close');
+  var contBtn  = document.getElementById('cart-continue-btn');
+
+  /* --- Open / Close helpers --- */
+  function openDrawer() {
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.classList.remove('hidden');
+    setTimeout(function () { overlay.classList.remove('opacity-0'); }, 10);
+    drawer.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.add('opacity-0');
+    drawer.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+    setTimeout(function () { overlay.classList.add('hidden'); }, 320);
+  }
+
+  /* --- Trigger: Cart icon buttons (delegated) --- */
+  document.body.addEventListener('click', function (e) {
+    if (e.target.closest('#cart-icon-desktop') || e.target.closest('#cart-icon-mobile')) {
+      e.preventDefault();
+      openDrawer();
+      refreshDrawer();
+    }
+    if (e.target === overlay || e.target.closest('#cart-drawer-close')) {
+      e.preventDefault();
+      closeDrawer();
+    }
+    if (e.target.closest('#cart-continue-btn')) {
+      e.preventDefault();
+      closeDrawer();
+    }
+  });
+
+  /* --- Refresh drawer HTML from the server --- */
+  async function refreshDrawer() {
+    try {
+      var res  = await fetch('/?sections=cart-drawer');
+      var json = await res.json();
+      if (json && json['cart-drawer']) {
+        var tmp = document.createElement('div');
+        tmp.innerHTML = json['cart-drawer'];
+        var newDrawer = tmp.querySelector('#cart-drawer');
+        if (newDrawer) drawer.innerHTML = newDrawer.innerHTML;
+        bindCartEvents();
+      }
+    } catch (err) {
+      console.warn('Cart drawer refresh failed, falling back to page reload.');
+    }
+  }
+
+  /* --- AJAX Add to Cart: intercept all /cart/add forms --- */
+  document.body.addEventListener('submit', async function (e) {
+    var form = e.target;
+    if (!form || form.getAttribute('action') !== '/cart/add') return;
+    e.preventDefault();
+    openDrawer();
+    var data = new FormData(form);
+    try {
+      var res = await fetch('/cart/add.js', { method: 'POST', body: data });
+      if (!res.ok) throw new Error('Add to cart failed');
+      await refreshDrawer();
+    } catch (err) {
+      console.error(err);
+      form.submit(); /* graceful fallback */
+    }
+  });
+
+  /* --- Bind qty & remove events (re-runs after drawer refresh) --- */
+  function bindCartEvents() {
+    /* Quantity buttons */
+    drawer.querySelectorAll('.cart-qty-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        var key       = btn.dataset.key;
+        var delta     = parseInt(btn.dataset.delta, 10);
+        var display   = btn.closest('.cart-line-item').querySelector('.cart-qty-display');
+        var currentQty = parseInt(display ? display.textContent.trim() : 1, 10);
+        var newQty    = Math.max(0, currentQty + delta);
+        await changeItem(key, newQty);
+      });
+    });
+
+    /* Remove buttons */
+    drawer.querySelectorAll('.cart-remove-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        await changeItem(btn.dataset.key, 0);
+      });
+    });
+  }
+
+  async function changeItem(key, qty) {
+    try {
+      var res = await fetch('/cart/change.js', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ id: key, quantity: qty })
+      });
+      if (!res.ok) throw new Error('Cart change failed');
+      await refreshDrawer();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  /* --- Initial bind --- */
+  bindCartEvents();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

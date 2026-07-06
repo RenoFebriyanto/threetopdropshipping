@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 2577px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>LUMINA - Sustainability</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#464747",
+                      "background": "#f9f9f9",
+                      "surface-container-high": "#e8e8e8",
+                      "surface": "#f9f9f9",
+                      "surface-variant": "#e2e2e2",
+                      "tertiary": "#000000",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#464747",
+                      "on-secondary-container": "#626263",
+                      "tertiary-fixed": "#e3e2e2",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "on-background": "#1a1c1c",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#1b1b1b",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#5e5e5e",
+                      "surface-container": "#eeeeee",
+                      "on-tertiary-container": "#838484",
+                      "surface-bright": "#f9f9f9",
+                      "primary-fixed": "#e2e2e2",
+                      "primary-container": "#1b1b1b",
+                      "secondary-fixed": "#e4e2e2",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "tertiary-fixed-dim": "#c7c6c6",
+                      "inverse-on-surface": "#f1f1f1",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "inverse-surface": "#2f3131",
+                      "surface-container-low": "#f3f3f3",
+                      "secondary-container": "#e1dfdf",
+                      "on-surface-variant": "#4c4546",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#848484",
+                      "on-primary-fixed-variant": "#474747",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-surface": "#1a1c1c",
+                      "primary": "#000000",
+                      "outline-variant": "#cfc4c5",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#c6c6c6",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#dadada",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "tertiary-container": "#1a1c1c",
+                      "surface-tint": "#5e5e5e",
+                      "outline": "#7e7576"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "margin-desktop": "80px",
+                      "stack-md": "48px",
+                      "margin-tablet": "40px",
+                      "stack-xl": "120px",
+                      "container-max": "1440px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "stack-lg": "80px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Bodoni Moda"
+                      ],
+                      "headline-md": [
+                              "Bodoni Moda"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Bodoni Moda"
+                      ],
+                      "display-lg-mobile": [
+                              "Bodoni Moda"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "300"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+          }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out glass-nav border-b border-transparent">
+<nav aria-label="Global" class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto hidden md:flex">
+<!-- Left: Navigation Links -->
+<div class="flex gap-8 items-center flex-1">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant link-hover-underline hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">New Arrivals</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant link-hover-underline hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">Women</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant link-hover-underline hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">Men</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant link-hover-underline hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">Editorial</a>
+</div>
+<!-- Center: Logo -->
+<a class="flex-shrink-0 flex items-center justify-center" href="/">
+<img alt="Lumina Brand Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvh8wxEeC8vzqfMjRkbTgUu1FM3YqsxolWTM3tYgxdsJQ7WlxwLb4i-ZTymJnK4TWGbM8ByZXGx36INRvcoZ0VAFgmldpT9gCbvTm_hyGPV_OpcYjieKLAIDLBl1PnqHZHeKtZnDtRYiok6HkPFEu_i8HV5aY7MyyPWizb2vK48lSplb5nHJFtMKqOLv7RQ7Ta2aX0g4DW7X1o3JPTxCN0J7SJg8yhdw_40wA_4ys7sd4gXJnZZqK3BG--l">
+<span class="sr-only">Lumina</span>
+</a>
+<!-- Right: Actions -->
+<div class="flex gap-6 items-center flex-1 justify-end">
+<button aria-label="Search" class="text-primary dark:text-on-surface hover:text-on-surface-variant transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button aria-label="Shopping Bag" class="text-primary dark:text-on-surface hover:text-on-surface-variant transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+</button>
+</div>
+</nav>
+<!-- Mobile Nav Placeholder -->
+<nav class="flex md:hidden justify-between items-center w-full px-margin-mobile h-16">
+<button aria-label="Menu" class="text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a class="flex-shrink-0 flex items-center justify-center" href="/">
+<img alt="Lumina Brand Logo" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvh8wxEeC8vzqfMjRkbTgUu1FM3YqsxolWTM3tYgxdsJQ7WlxwLb4i-ZTymJnK4TWGbM8ByZXGx36INRvcoZ0VAFgmldpT9gCbvTm_hyGPV_OpcYjieKLAIDLBl1PnqHZHeKtZnDtRYiok6HkPFEu_i8HV5aY7MyyPWizb2vK48lSplb5nHJFtMKqOLv7RQ7Ta2aX0g4DW7X1o3JPTxCN0J7SJg8yhdw_40wA_4ys7sd4gXJnZZqK3BG--l">
+</a>
+<button aria-label="Shopping Bag" class="text-primary">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</nav>
+</header>
+<main class="pt-24 pb-stack-xl">
+<!-- Hero Section (Asymmetric Split-Screen) -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-12 md:mt-24 mb-stack-xl">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Left side (60%): Statistics -->
+<div class="md:w-[60%] flex flex-col justify-center pr-0 md:pr-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8 leading-tight">
+                        Commitment to<br>
+<span class="italic text-outline">Tomorrow.</span>
+</h1>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8 border-t border-outline-variant/30 pt-8">
+<div>
+<p class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">98%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Organic Materials</p>
+</div>
+<div>
+<p class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">0%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Production Waste</p>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-12 max-w-lg">
+                        We believe true luxury lies in preservation. Every garment is a testament to architectural precision and ecological responsibility.
+                    </p>
+</div>
+<!-- Right side (40%): Texture Image -->
+<div class="md:w-[40%] mt-12 md:mt-0 relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img alt="Detailed close-up of natural, unbleached organic linen fabric showing the intricate weave and subtle texture variations." class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLv9if4wHThqwtAk_CNT2p00DSuQUExcUymT_wdt0URnszUvgi5Xyxq-CcBtE3z4CXe4LwdYItTaQEIJN4EUmzPS8O7TD80ENh7tWaQYV2sxat5j1QIhRybpBFNYHHOXXN3rl_t6-FhbjLM8LOajvDxAqcYCGxdperdWGZAZYHgkCahhQf_9fxfkYYM4NB4ffKUJ3AsfZzRZkkER55J04czf6V8Tcq3odpE29OO9j3R3Rets6nPym1Z2sX-m">
+</div>
+</div>
+</section>
+<!-- Material Pillars Section (Infographic Grid) -->
+<section class="bg-surface-container-lowest py-stack-xl border-y border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary">Core Materials</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-2xl mx-auto">Sourced with absolute transparency and refined to our exacting standards.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-gutter gap-y-12">
+<!-- Pillar 1 -->
+<div class="flex flex-col items-start border-l border-outline-variant/30 pl-6 h-full">
+<span class="material-symbols-outlined text-[32px] text-primary mb-6">recycling</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Recycled Silk</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Salvaged from pre-consumer waste, our silk retains the fluid drape and structural integrity of virgin fibers while eliminating the need for raw extraction.
+                        </p>
+</div>
+<!-- Pillar 2 -->
+<div class="flex flex-col items-start border-l border-outline-variant/30 pl-6 h-full">
+<span class="material-symbols-outlined text-[32px] text-primary mb-6">eco</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Organic Cotton</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Cultivated without synthetic pesticides or fertilizers, our cotton supports soil health and provides a crisp, breathable foundation for everyday silhouettes.
+                        </p>
+</div>
+<!-- Pillar 3 -->
+<div class="flex flex-col items-start border-l border-outline-variant/30 pl-6 h-full">
+<span class="material-symbols-outlined text-[32px] text-primary mb-6">grass</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Regenerative Wool</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Sourced from farms practicing holistic grazing, our wool sequesters carbon back into the soil, offering warmth with a net-positive environmental footprint.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Detail Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-xl">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="order-2 lg:order-1 relative aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist, high-end editorial photograph of a spool of unbleached thread resting on a pristine white architectural block, illuminated by soft, natural studio lighting, conveying a sense of quiet luxury and sustainable craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADZKIDQ92B5610QzeZctjN4WNkKnAVNnPO9j456acd-WQwkmLpDwubgghWauOP_EYi6IN_JbjO4SvWtJZYr3umstgk5dR0Qw4XcP9qkNExJ-eEYsE_VzUo_tG6HRxzrJjogj1g0XuBbUbJMZUKr806D77Q_5xZQnwX8nUfUdXV7LWTvzEJ35zmDj7SV9c70TBCu25iOzmn9G8irOObLyg-GqceIii6A1iIJqkEVgGFyxJwD_a25PsrWIZJCx8YALOHPi_jwW64j7nr">
+</div>
+<div class="order-1 lg:order-2 lg:pl-12">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-12">Supply Chain Transparency</h2>
+<div class="space-y-8">
+<div class="border-b border-outline-variant/30 pb-4">
+<div class="flex justify-between items-baseline mb-2">
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Traceability</h4>
+<span class="font-body-md text-body-md text-on-surface-variant">Tier 1 &amp; 2</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">100% mapped and audited factories.</p>
+</div>
+<div class="border-b border-outline-variant/30 pb-4">
+<div class="flex justify-between items-baseline mb-2">
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Water Stewardship</h4>
+<span class="font-body-md text-body-md text-on-surface-variant">-40% Usage</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Implementation of closed-loop dyeing systems.</p>
+</div>
+<div class="border-b border-outline-variant/30 pb-4">
+<div class="flex justify-between items-baseline mb-2">
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Carbon Emissions</h4>
+<span class="font-body-md text-body-md text-on-surface-variant">Scope 1, 2, 3</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Committed to net-zero by 2030 across all operations.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/30 py-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Brand Logo -->
+<div class="font-headline-md text-headline-md text-primary mb-6 md:mb-0">
+                LUMINA
+            </div>
+<!-- Navigation Links -->
+<nav class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-6 md:mb-0">
+<a class="font-label-sm text-label-sm text-primary underline hover:opacity-70 transition-opacity cursor-pointer" href="#">Sustainability</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all cursor-pointer" href="#">Contact</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all cursor-pointer" href="#">Shipping</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all cursor-pointer" href="#">Returns</a>
+</nav>
+<!-- Copyright -->
+<div class="font-body-md text-body-md text-on-surface-variant">
+                © 2024 LUMINA. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+
+
+</body></html>

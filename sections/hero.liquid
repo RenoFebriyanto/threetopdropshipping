@@ -1,0 +1,73 @@
+<section class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden pt-20">
+  <!-- Background Image -->
+  <div class="absolute inset-0 w-full h-full">
+    <div aria-hidden="true" class="absolute inset-0 bg-cover bg-center" style="background-image: url('{% if section.settings.bg_image != blank %}{{ section.settings.bg_image | img_url: 'master' }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuCIE2Y8AV5OrTm1mzlR2JcNjjX3G8rbG1forb6Ku5tz-7fFchwA6vRz2J9HB62MFtGp4IPUbN-iFpoLLOEt4B2n9V9ZwKjfqRDp-JpJImR6Yki57Ft2twgQ3x_cU8wu7Xpv9XKwcz4nYMkirmKSRB8YYPe_hF6RZh1dKsiwZlYGSjiDGtKapr_wES65zDxr0cuc4pCJ_6dEZJtafv5Nbrhfc1AtCiZfFDQQwQ979biYCwx3MT1kqVfB_EbgtGzSsmiePue0IA9Co2kg{% endif %}');"></div>
+    <!-- Subtle gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+  </div>
+  
+  <!-- Hero Content -->
+  <div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center gap-6 md:gap-8 mt-12 md:mt-24">
+    <span class="font-label-sm text-label-sm text-on-primary tracking-[0.2em] uppercase opacity-90 block">
+      {{ section.settings.subtitle }}
+    </span>
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary max-w-3xl leading-tight">
+      {{ section.settings.title }}
+    </h1>
+    <p class="font-body-lg text-body-lg text-on-primary/90 max-w-2xl mx-auto">
+      {{ section.settings.text }}
+    </p>
+    <div class="mt-8">
+      <a class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out border border-transparent" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Summer Collection 2026"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Elegance in Every Thread"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Discover our latest collection crafted from 100% sustainable premium silk and organic cotton, designed for the modern conscious wardrobe."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

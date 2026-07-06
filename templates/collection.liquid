@@ -1,0 +1,76 @@
+{% layout 'theme' %}
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Hero Section -->
+<header class="mb-stack-lg text-center md:text-left flex flex-col items-center md:items-start max-w-3xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Our Collection</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Curated essentials designed for the modern wardrobe. Explore a selection defined by architectural precision and understated luxury.</p>
+</header>
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0 mb-stack-md md:mb-0">
+<div class="sticky top-32 space-y-8">
+<!-- Category Filter -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary mb-4 uppercase tracking-widest">Category</h3>
+<ul class="space-y-3">
+<li><label class="flex items-center gap-3 cursor-pointer group"><input checked="" class="form-checkbox text-primary border-outline-variant focus:ring-primary rounded-sm" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-primary text-on-surface transition-colors">All Clothing</span></label></li>
+<li><label class="flex items-center gap-3 cursor-pointer group"><input class="form-checkbox text-primary border-outline-variant focus:ring-primary rounded-sm" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-primary text-on-surface-variant transition-colors">Dresses</span></label></li>
+<li><label class="flex items-center gap-3 cursor-pointer group"><input class="form-checkbox text-primary border-outline-variant focus:ring-primary rounded-sm" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-primary text-on-surface-variant transition-colors">Tops</span></label></li>
+<li><label class="flex items-center gap-3 cursor-pointer group"><input class="form-checkbox text-primary border-outline-variant focus:ring-primary rounded-sm" type="checkbox"/><span class="font-body-md text-body-md group-hover:text-primary text-on-surface-variant transition-colors">Outerwear</span></label></li>
+</ul>
+</div>
+<!-- Size Filter -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary mb-4 uppercase tracking-widest">Size</h3>
+<div class="flex flex-wrap gap-2">
+<button class="w-10 h-10 border border-primary text-primary flex items-center justify-center font-label-sm text-label-sm hover:bg-surface-variant transition-colors">XS</button>
+<button class="w-10 h-10 border border-outline-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm hover:border-primary transition-colors">S</button>
+<button class="w-10 h-10 border border-outline-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm hover:border-primary transition-colors">M</button>
+<button class="w-10 h-10 border border-outline-variant text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm hover:border-primary transition-colors">L</button>
+</div>
+</div>
+<!-- Color Filter -->
+<div>
+<h3 class="font-label-sm text-label-sm text-primary mb-4 uppercase tracking-widest">Color</h3>
+<div class="flex flex-wrap gap-3">
+<button aria-label="Light Grey" class="w-6 h-6 rounded-full bg-[#E5E5E5] border border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-2 ring-offset-background"></button>
+<button aria-label="Black" class="w-6 h-6 rounded-full bg-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-2 ring-offset-background"></button>
+<button aria-label="Beige" class="w-6 h-6 rounded-full bg-[#F5F5DC] border border-outline-variant focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-2 ring-offset-background"></button>
+<button aria-label="Brown" class="w-6 h-6 rounded-full bg-[#8B4513] focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-2 ring-offset-background"></button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8">
+{% paginate collection.products by 12 %}
+{% assign products_to_loop = collection.products %}
+{% if products_to_loop.size == 0 and collection.handle == blank %}
+    {% assign products_to_loop = collections.all.products %}
+{% endif %}
+{% for product in products_to_loop %}
+<a class="group block cursor-pointer" href="{{ product.url }}">
+<div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105" data-alt="A minimalist high-fashion editorial shot of a woman wearing a flowing, structural cream-colored silk dress in a brutalist concrete setting. Soft, natural sunlight creates dramatic shadows. High-end luxury aesthetic, clean lines, and an atmosphere of quiet elegance." loading="lazy" src="{{ product.featured_image | image_url: width: 600 }}"/>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-body-md text-body-md text-primary mb-1 group-hover:underline underline-offset-4 decoration-1">{{ product.title }}</h3>
+{% if product.variants.first.title != 'Default Title' %}<p class="font-label-sm text-label-sm text-on-surface-variant">{{ product.variants.first.title }}</p>{% endif %}
+</div>
+<span class="font-body-md text-body-md text-primary">{{ product.price | money }}</span>
+</div>
+</a>
+{% else %}
+<p>No products found.</p>
+{% endfor %}
+</div>
+{% if paginate.pages > 1 %}
+    <div class="mt-16 flex justify-center w-full col-span-full">
+        {{ paginate | default_pagination }}
+    </div>
+{% endif %}
+{% endpaginate %}
+</main>

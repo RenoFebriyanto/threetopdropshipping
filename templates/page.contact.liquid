@@ -1,0 +1,55 @@
+{% layout 'theme' %}
+
+<main class="w-full min-h-[60vh] flex flex-col justify-between py-12 px-6 md:px-12 mt-20 max-w-container-max mx-auto flex-grow">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 pt-12 md:pt-20">
+<!-- Left Side: Editorial Title and Info -->
+<div class="flex flex-col justify-start">
+<h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-8 md:mb-12">Get In Touch</h1>
+<div class="font-body-md text-on-surface-variant space-y-6 max-w-md">
+{{ page.content }}
+<div class="pt-8 space-y-8">
+<div>
+<h3 class="font-label-sm text-primary uppercase tracking-widest mb-2">Client Services</h3>
+<a class="block hover:opacity-70 transition-opacity" href="mailto:concierge@lumina.com">concierge@lumina.com</a>
+<a class="block hover:opacity-70 transition-opacity" href="tel:+18005550199">+1 (800) 555-0199</a>
+</div>
+<div>
+<h3 class="font-label-sm text-primary uppercase tracking-widest mb-2">Operating Hours</h3>
+<p>Monday – Friday</p>
+<p>9:00 AM – 6:00 PM EST</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Minimalist Form -->
+<div class="flex flex-col justify-start">
+{% form 'contact', class: 'w-full max-w-lg' %}
+            {% if form.posted_successfully? %}
+              <p class="font-body-md text-green-700 bg-green-50 p-4 border border-green-200 mb-6">Thanks for contacting us. We'll get back to you as soon as possible.</p>
+            {% endif %}
+            {% if form.errors %}
+              <div class="font-body-md text-red-700 bg-red-50 p-4 border border-red-200 mb-6">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+            <div class="mb-6">
+                <label class="font-label-sm uppercase tracking-widest text-primary block mb-2" for="name">Name</label>
+                <input class="border-0 border-b border-outline-variant/50 focus:border-primary focus:outline-none bg-transparent w-full py-2 font-body-md text-primary transition-colors focus:ring-0 px-0" id="name" name="contact[name]" required="" type="text" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"/>
+            </div>
+            <div class="mb-6">
+                <label class="font-label-sm uppercase tracking-widest text-primary block mb-2" for="email">Email</label>
+                <input class="border-0 border-b border-outline-variant/50 focus:border-primary focus:outline-none bg-transparent w-full py-2 font-body-md text-primary transition-colors focus:ring-0 px-0" id="email" name="contact[email]" required="" type="email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"/>
+            </div>
+            <div class="mb-8">
+                <label class="font-label-sm uppercase tracking-widest text-primary block mb-2" for="message">Message</label>
+                <textarea class="border-0 border-b border-outline-variant/50 focus:border-primary focus:outline-none bg-transparent w-full py-2 font-body-md text-primary transition-colors resize-none focus:ring-0 px-0" id="message" name="contact[body]" required="" rows="1">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+            <div>
+                <button class="bg-primary text-on-primary font-label-sm uppercase tracking-widest py-4 px-12 rounded-none hover:opacity-80 transition-opacity w-full md:w-auto" type="submit">
+                    Send Message
+                </button>
+            </div>
+        {% endform %}
+</div>
+</div>
+</main>

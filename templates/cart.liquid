@@ -1,0 +1,109 @@
+{% layout 'theme' %}
+
+<div class="pt-[100px] md:pt-[140px] pb-stack-xl max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop min-h-screen">
+  <div class="mb-stack-md text-center md:text-left">
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Your Shopping Bag</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant mt-2 md:mt-4">{{ cart.item_count }} items in your cart.</p>
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-margin-desktop">
+        <!-- Cart Items (Left Column) -->
+        <div class="lg:col-span-8 flex flex-col gap-8">
+          <div class="hidden md:grid grid-cols-12 gap-4 border-b border-outline-variant pb-4 mb-4">
+            <div class="col-span-6 font-label-sm text-label-sm text-on-surface-variant uppercase">Product</div>
+            <div class="col-span-2 font-label-sm text-label-sm text-on-surface-variant uppercase text-center">Price</div>
+            <div class="col-span-2 font-label-sm text-label-sm text-on-surface-variant uppercase text-center">Quantity</div>
+            <div class="col-span-2 font-label-sm text-label-sm text-on-surface-variant uppercase text-right">Total</div>
+          </div>
+
+          {% for item in cart.items %}
+            <div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-start md:items-center py-4 border-b border-outline-variant relative group">
+              <a href="{{ item.url_to_remove }}" aria-label="Remove item" class="absolute top-4 right-0 md:hidden text-outline hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+              </a>
+              
+              <!-- Product Info -->
+              <div class="col-span-6 flex gap-6 w-full">
+                <a href="{{ item.url }}" class="w-24 h-32 md:w-32 md:h-40 bg-surface-container shrink-0 overflow-hidden relative block">
+                  <img src="{{ item.image | image_url: width: 300 }}" alt="{{ item.title | escape }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                </a>
+                <div class="flex flex-col justify-center">
+                  <h3 class="font-body-lg text-body-lg text-primary mb-1"><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+                  {% unless item.product.has_only_default_variant %}
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-3">{{ item.variant.title }}</p>
+                  {% endunless %}
+                  <a href="{{ item.url_to_remove }}" class="hidden md:flex items-center gap-1 text-label-sm font-label-sm text-outline hover:text-primary transition-colors underline-offset-4 hover:underline w-max">
+                    Remove
+                  </a>
+                </div>
+              </div>
+
+              <!-- Mobile Price/Qty Row -->
+              <div class="flex justify-between items-center w-full md:hidden mt-2">
+                <span class="font-body-md text-body-md text-primary">{{ item.price | money }}</span>
+                <div class="flex items-center border border-outline-variant rounded-sm h-10 w-24">
+                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="w-full h-full text-center font-label-sm text-label-sm text-primary border-none bg-transparent focus:ring-0">
+                </div>
+              </div>
+
+              <!-- Desktop Price, Qty, Total -->
+              <div class="hidden md:block col-span-2 text-center font-body-md text-body-md text-primary">{{ item.price | money }}</div>
+              <div class="hidden md:flex col-span-2 justify-center">
+                <div class="flex items-center border border-outline-variant rounded-sm h-10 w-24">
+                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="w-full h-full text-center font-label-sm text-label-sm text-primary border-none bg-transparent focus:ring-0">
+                </div>
+              </div>
+              <div class="hidden md:block col-span-2 text-right font-body-md text-body-md text-primary">{{ item.final_line_price | money }}</div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Order Summary (Right Column) -->
+        <div class="lg:col-span-4 mt-8 lg:mt-0">
+          <div class="bg-surface p-6 md:p-8 flex flex-col gap-6 sticky top-32 border border-outline-variant/50">
+            <h2 class="font-headline-md text-headline-md text-primary border-b border-outline-variant pb-4">Order Summary</h2>
+            
+            <div class="flex flex-col gap-4 font-body-md text-body-md">
+              <div class="flex justify-between items-center text-on-surface-variant">
+                <span>Subtotal</span>
+                <span class="text-primary">{{ cart.total_price | money }}</span>
+              </div>
+              <div class="flex justify-between items-center text-on-surface-variant">
+                <span>Shipping</span>
+                <span>Calculated at checkout</span>
+              </div>
+              <div class="flex justify-between items-center text-on-surface-variant">
+                <span>Taxes</span>
+                <span>Calculated at checkout</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-outline-variant pt-4 mt-2 flex justify-between items-end">
+              <span class="font-body-lg text-body-lg text-primary">Estimated Total</span>
+              <span class="font-headline-md text-headline-md text-primary">{{ cart.total_price | money }}</span>
+            </div>
+            
+            <button type="submit" name="update" class="w-full bg-surface-variant text-on-surface-variant py-4 mt-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-outline-variant transition-colors duration-300">
+              Update Cart
+            </button>
+            <button type="submit" name="checkout" class="w-full bg-primary text-on-primary py-4 mt-2 font-label-sm text-label-sm uppercase tracking-widest hover:bg-[#222222] transition-colors duration-300">
+              Proceed to Checkout
+            </button>
+            <div class="text-center mt-2">
+              <a href="{{ routes.all_products_collection_url }}" class="font-label-sm text-label-sm text-outline hover:text-primary underline-offset-4 hover:underline transition-all">Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="text-center py-20">
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Your cart is currently empty.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out">
+        Continue Shopping
+      </a>
+    </div>
+  {% endif %}
+</div>

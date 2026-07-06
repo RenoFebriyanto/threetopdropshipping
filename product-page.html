@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina - Silk Blouse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f9f9f9",
+                      "on-secondary-container": "#626263",
+                      "on-primary-fixed-variant": "#474747",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#e4e2e2",
+                      "surface-container-high": "#e8e8e8",
+                      "secondary": "#5e5e5e",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "surface-container": "#eeeeee",
+                      "on-surface": "#1a1c1c",
+                      "inverse-surface": "#2f3131",
+                      "secondary-container": "#e1dfdf",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "on-primary-container": "#848484",
+                      "tertiary-fixed": "#e3e2e2",
+                      "primary-container": "#1b1b1b",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-fixed-variant": "#464747",
+                      "tertiary-fixed-dim": "#c7c6c6",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-tertiary-container": "#838484",
+                      "on-primary-fixed": "#1b1b1b",
+                      "on-background": "#1a1c1c",
+                      "on-surface-variant": "#4c4546",
+                      "tertiary-container": "#1a1c1c",
+                      "tertiary": "#000000",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "inverse-on-surface": "#f1f1f1",
+                      "outline": "#7e7576",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#464747",
+                      "primary": "#000000",
+                      "surface-tint": "#5e5e5e",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "surface-dim": "#dadada",
+                      "surface-variant": "#e2e2e2",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#e2e2e2",
+                      "inverse-primary": "#c6c6c6",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9f9",
+                      "surface-container-low": "#f3f3f3",
+                      "outline-variant": "#cfc4c5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-xl": "120px",
+                      "stack-md": "48px",
+                      "margin-mobile": "20px",
+                      "stack-lg": "80px",
+                      "gutter": "24px",
+                      "margin-desktop": "80px",
+                      "unit": "8px",
+                      "margin-tablet": "40px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Bodoni Moda"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Bodoni Moda"
+                      ],
+                      "headline-md": [
+                              "Bodoni Moda"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Bodoni Moda"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "300"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl transition-all duration-300 ease-in-out">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="font-headline-lg text-headline-lg tracking-tighter text-primary dark:text-on-surface" href="#">Lumina</a>
+<!-- Desktop Navigation Links -->
+<ul class="hidden md:flex items-center gap-gutter">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">New Arrivals</a></li>
+<li><a class="font-label-sm text-label-sm text-primary dark:text-on-surface border-b border-primary dark:border-on-surface pb-1 transition-all duration-300 ease-in-out" href="#">Women</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">Men</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-on-surface transition-colors duration-300" href="#">Editorial</a></li>
+</ul>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4 text-primary dark:text-on-surface">
+<button aria-label="search" class="hover:text-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="shopping_bag" class="hover:text-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 md:pt-[120px] pb-stack-xl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-gutter">
+<!-- Image Gallery (Left Column) -->
+<div class="md:col-span-7 lg:col-span-8 flex flex-col gap-4 relative">
+<div class="w-full aspect-[4/5] bg-surface-container-high rounded-sm overflow-hidden group">
+<img alt="Silk Blouse on a mannequin in a minimal concrete space" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLtSPfKik9COzc5NalygbWNm2Rs21eEZKvljCpQ8MjUWmnRW962s2eIMCnXZcTfrE7Fevel9Xw83u4N8zYWSUwgtvcNrQDUkAiUbqwqP1_IPcvjSjf9bLSwSGG4pCtaSthN4zLNe6UEs_rIEPkOR-ucaVQ20kX_cdE6sefzgXVw1hGA_NuTtMXmSV3ukoJi9LAiZoxHir0W4EX_Mva5NxmEoGwP_B92Y0cXMH-Dhj1rTlkPErLwGX6reULdO"/>
+</div><div class="grid grid-cols-3 gap-4 mt-4"><div class="aspect-square bg-surface-container-high rounded-sm overflow-hidden cursor-pointer border border-primary"><img alt="Back detail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDax2RmQY5X4owkkEedB0DOOE4Wok1IM3NDosmC-bsaWQjAQgCnaqxA9tASj_oqxbNZ395vNew5x6YxSnH4crcTZIAoWvkZWoLsMBcWA0MyVMqRVnY1mUL0Ds9BNYJikdvFVPExKPrsiW-vd0H6L84JsggwMTW6-DPcvkTzSexdr_ZjR_Kq1W3x57gsy0lh6yjybYzrOnJc3cnPcwCyq6YNr5Gz5WpokD_1BYL7UNBlfnd0kMrGgrxUFJkr1sidC3KaaouAgGU7G2Po"/></div><div class="aspect-square bg-surface-container-high rounded-sm overflow-hidden cursor-pointer hover:opacity-80 transition-all"><img alt="Side view" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpgxr11b9g9ngH57738a6ciXUlUSz9AeltF4FzmCAC2LgMrBVtUuDS2ljqqTIL9k4-UiYKhRMBWSzotpMF3qsFtwRhQ1VZ_Yl-ud3ou2Dd67yNJ5pjzmDwA74MPTzTaCBoI84kzUO8asqioSbZk7wnZz7no4oQl1mrEy4P_rVt4EdH7jbWGFqwgYsnvh7p7KMGtVTIvk8Xku3x8iY7MNOqWb0ekzwPIlPCD8FLzxzAI5aJ7d8WIuNte_FcQMrxnbbw3g-ddlLdfSrj"/></div><div class="aspect-square bg-surface-container-high rounded-sm overflow-hidden cursor-pointer hover:opacity-80 transition-all"><img alt="Cuff detail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhkcOY3NW3q2n7K0rxxBDaLt1RapCHKLlKrbFXh6QR9neVpGhEaC5aaw2NYmZFU-IZYGRmD7oR1P5V7UkRcArYVjv16wbpz-D9qL67HH6LTnsbnyXWPawUKD9VyQ1gDP62WBntW8HeX9mYNGgp748UTAD2xzx629Hm1z2Na5oQHoWoAxEOGMt2LraExrqk-kogAmzsFHik1zDNb5MLf_DxH9SUrZWGEyk3G__B_Tr-hjN9Ba3jxuhI6ZyL_hdBF30_42XtvQLU9yg0"/></div></div>
+</div>
+<!-- Product Info Sticky Panel (Right Column) -->
+<div class="md:col-span-5 lg:col-span-4 relative">
+<div class="md:sticky md:top-32 flex flex-col gap-8">
+<!-- Header & Price -->
+<div class="flex flex-col gap-2">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Silk Blouse</h1><div class="flex items-center gap-2 mt-2"><div class="flex text-primary"><span class="material-symbols-outlined !text-lg">star</span><span class="material-symbols-outlined !text-lg">star</span><span class="material-symbols-outlined !text-lg">star</span><span class="material-symbols-outlined !text-lg">star</span><span class="material-symbols-outlined !text-lg">star</span></div><span class="font-body-md text-label-sm text-on-surface-variant">4.8 (124 reviews)</span></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">$240</p>
+</div>
+<!-- Size Selector -->
+<div class="flex flex-col gap-4 mb-8"><span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Color</span><div class="flex gap-4"><button aria-label="Ivory" class="w-8 h-8 rounded-full border border-primary p-0.5"><div class="w-full h-full rounded-full bg-[#F9F9F9] border border-outline-variant"></div></button><button aria-label="Onyx" class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant p-0.5"><div class="w-full h-full rounded-full bg-[#111111]"></div></button><button aria-label="Sage" class="w-8 h-8 rounded-full border border-transparent hover:border-outline-variant p-0.5"><div class="w-full h-full rounded-full bg-[#A3B18A]"></div></button></div></div><div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Size</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant underline hover:text-primary transition-colors" href="#">Size Guide</a>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-3 border border-outline-variant text-center font-label-sm text-label-sm text-on-surface hover:border-primary transition-colors">S</button>
+<button class="py-3 border border-primary text-center font-label-sm text-label-sm text-primary bg-surface-container-lowest shadow-[0_0_0_1px_black] transition-colors">M</button>
+<button class="py-3 border border-outline-variant text-center font-label-sm text-label-sm text-on-surface hover:border-primary transition-colors">L</button>
+<button class="py-3 border border-outline-variant text-center font-label-sm text-label-sm text-outline cursor-not-allowed" disabled="">XL</button>
+</div>
+</div>
+<!-- Add to Cart Action -->
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-[#222222] transition-colors duration-300">Add to Cart</button><p class="mt-4 font-body-md text-label-sm text-error flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-error"></span> Only 2 items left in stock</p><div class="grid grid-cols-3 gap-2 mt-8 pt-8 border-t border-outline-variant"><div class="flex flex-col items-center text-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">local_shipping</span><span class="text-[10px] font-label-sm uppercase tracking-tighter text-on-surface-variant">Free Shipping</span></div><div class="flex flex-col items-center text-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">assignment_return</span><span class="text-[10px] font-label-sm uppercase tracking-tighter text-on-surface-variant">30-Day Returns</span></div><div class="flex flex-col items-center text-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">verified_user</span><span class="text-[10px] font-label-sm uppercase tracking-tighter text-on-surface-variant">Secure Checkout</span></div></div>
+</div>
+<!-- Accordions -->
+<div class="flex flex-col border-t border-outline-variant mt-4">
+<!-- Details Accordion -->
+<details class="group border-b border-outline-variant py-4" open="">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-sm text-label-sm text-primary uppercase tracking-widest">
+                                Product Details
+                                <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="pt-4 font-body-md text-body-md text-on-surface-variant">
+<p>100% sustainable premium silk. Relaxed fit with a clean-finished collar and delicate cuff details.</p>
+</div>
+</details>
+<!-- Shipping Accordion -->
+<details class="group border-b border-outline-variant py-4">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-sm text-label-sm text-primary uppercase tracking-widest">
+                                Shipping &amp; Returns
+                                <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="pt-4 font-body-md text-body-md text-on-surface-variant">
+<p>Complimentary worldwide shipping on all orders. Returns accepted within 30 days.</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+<!-- You Might Also Like Section -->
+<section class="mt-stack-xl pt-stack-xl border-t border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-primary mb-12 text-center md:text-left">You Might Also Like</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<a class="group flex flex-col gap-4" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-high rounded-sm overflow-hidden">
+<img alt="Linen Trousers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLtToAxZ2mSXQKEYqoIfMWBEvS-9M46f43dlsua8nbyM85HrfVw0CbEBJI9v4SRexmNGBpynvkfwbUJ799vdpn_pHnD5RO53HFhkH63OC16Jj8-A6YIRmi4vhTFYgnMN5r-18JMaHIHAjhHCcnteYJrJO7wURpyamFOf4P9Xnb86xLm7J8gT3pFuR6y1CZr-uo4OiFDZArfyV8rH6ov-N2i7JH8wzR1ne2_Z6Lzs-qJXcBxqApy7A7FNwwdb"/>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-lg text-primary">Linen Trousers</h3>
+<p class="font-body-md text-on-surface-variant">$320</p>
+</div>
+</a>
+<!-- Card 2 -->
+<a class="group flex flex-col gap-4" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-high rounded-sm overflow-hidden">
+<img alt="Silk Slip Dress" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLvgE7lLftAo02g2f1ZG_1xjMxHFlkGDGRRx_zQsUROyFa87Ks49qcJwYMuAZvwY377cTq4mb-E73ujj7cN5Vb_wb5aHvgMaPVnUmkPyOZpdFwJH0bRBneDRo0vvsx1ko2wc2bIvu92Z3pgiW16qNI8Q54nYAtGK4lDOmCdKks6so4ep5ee1ldg3Jtm0c88Og0HFXYBWfqf3QzhwKCwfLSnsa5ROndWgLd0puu4fxA18LcuxMSQhQybdWtXt"/>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-lg text-primary">Silk Slip Dress</h3>
+<p class="font-body-md text-on-surface-variant">$450</p>
+</div>
+</a>
+<!-- Card 3 -->
+<a class="group flex flex-col gap-4" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-high rounded-sm overflow-hidden">
+<img alt="Cashmere Coat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLswr9vdZBLceVBT4cpKJJXOfCWtY9TBTdsglOh26lpSQwY3QnqZmeokAOu-XR0jrTxAiA2cBphNilfEW8O9VXVd69dShS7hRfvWCwRLSDFRAStsESUJ66LUIgKjuCnMbC59X7uH_EeMVFv65wVz0Kw1EbGCjvkRk3Gy5D74xBh73xNw18anRlexoYJjQp8-q7J8bLPHrQD2EN65zW08EboLgptq0qLxZT8mYK_ttJ4g-RrLv5U2atL-6xOt"/>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-lg text-primary">Cashmere Coat</h3>
+<p class="font-body-md text-on-surface-variant">$890</p>
+</div>
+</a>
+<!-- Card 4 -->
+<a class="group flex flex-col gap-4" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-high rounded-sm overflow-hidden">
+<img alt="Structured Blazer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida/AP1WRLvZCvFCK2QO-pVGOmD3QSdqZghQiFEOUnvIR9YPv1DCR7szk64V1cPjyvSgQ-dJJ3pRnI9RSjzFf7F8e4Wehh1-JXA2-R6axPOWLeSLuZei8GQtd7yNGH2hpOcZ-UYEgc15X8__2K3jKsbXdC3KwZ_9OW80iMJt1vpeXeq98PVtRUh9s4ddfD53I8sQAjwrV4Ah6BjgDHWAOo5pc-tW9_kYgk-apL9E8L0T5o4rLMVHyOARgHHtNmfdxIQg"/>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-lg text-primary">Structured Blazer</h3>
+<p class="font-body-md text-on-surface-variant">$650</p>
+</div>
+</a>
+</div>
+</section>
+<!-- Detailed Reviews Section -->
+<section class="mt-stack-xl pt-stack-lg border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-gutter">
+<!-- Left Column: Summary -->
+<div class="md:col-span-4 lg:col-span-3 flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md text-primary">Reviews</h2>
+<div>
+<p class="font-headline-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">4.8<span class="text-headline-md text-on-surface-variant">/5</span></p>
+<p class="font-body-md text-label-sm text-on-surface-variant mt-2 uppercase tracking-widest">Based on 124 reviews</p>
+</div>
+<!-- Minimal Bar Chart -->
+<div class="flex flex-col gap-2 mt-4">
+<div class="flex items-center gap-4"><span class="font-label-sm text-on-surface-variant w-4">5</span><div class="flex-grow h-1 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary w-[85%]"></div></div></div>
+<div class="flex items-center gap-4"><span class="font-label-sm text-on-surface-variant w-4">4</span><div class="flex-grow h-1 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary w-[10%]"></div></div></div>
+<div class="flex items-center gap-4"><span class="font-label-sm text-on-surface-variant w-4">3</span><div class="flex-grow h-1 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary w-[3%]"></div></div></div>
+<div class="flex items-center gap-4"><span class="font-label-sm text-on-surface-variant w-4">2</span><div class="flex-grow h-1 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary w-[1%]"></div></div></div>
+<div class="flex items-center gap-4"><span class="font-label-sm text-on-surface-variant w-4">1</span><div class="flex-grow h-1 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary w-[1%]"></div></div></div>
+</div>
+</div>
+<!-- Right Column: Review List -->
+<div class="md:col-span-8 lg:col-span-9 flex flex-col gap-8 md:pl-gutter">
+<!-- Review 1 -->
+<div class="flex flex-col gap-3 pb-8 border-b border-outline-variant">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Elena M.</span>
+<span class="font-body-md text-xs text-on-surface-variant mt-1">October 12, 2024</span>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface">"The drape of this silk is unparalleled. A true capsule wardrobe staple. It transitions beautifully from day to evening."</p>
+</div>
+<!-- Review 2 -->
+<div class="flex flex-col gap-3 pb-8 border-b border-outline-variant">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Julian W.</span>
+<span class="font-body-md text-xs text-on-surface-variant mt-1">September 28, 2024</span>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface">"Exquisite craftsmanship. The finishing on the seams is perfect, and the ivory color is exactly as pictured."</p>
+</div>
+<!-- Review 3 -->
+<div class="flex flex-col gap-3 pb-8 border-b border-outline-variant">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Sophie T.</span>
+<span class="font-body-md text-xs text-on-surface-variant mt-1">September 15, 2024</span>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star</span><span class="material-symbols-outlined !text-sm">star_half</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface">"Runs slightly large, but the relaxed fit is very chic. Beautiful material."</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-md bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-6 md:gap-0">
+<div class="font-headline-md text-headline-md text-primary dark:text-on-surface">
+                Lumina
+            </div>
+<ul class="flex flex-wrap justify-center gap-6">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Sustainability</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Contact</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Shipping</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:underline transition-all opacity-80 hover:opacity-100" href="#">Returns</a></li>
+</ul>
+<div class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant">
+                © 2024 Lumina. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- Floating Chat Button -->
+<button aria-label="Chat Support" class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg hover:scale-105 hover:bg-[#222222] transition-all z-50">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</body></html>

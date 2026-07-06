@@ -1,0 +1,205 @@
+<!-- ====== HERO SECTION ====== -->
+<section class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 w-full h-full">
+    {% if section.settings.bg_image != blank %}
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 1920 }}"
+        alt="{{ section.settings.title | escape }}"
+        class="absolute inset-0 w-full h-full object-cover"
+        width="1920" height="1080"
+        loading="eager"
+      >
+    {% else %}
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');"></div>
+    {% endif %}
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/50"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center gap-6 md:gap-8">
+    <span class="font-label-sm text-label-sm text-on-primary tracking-[0.2em] uppercase opacity-90">
+      {{ section.settings.subtitle }}
+    </span>
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary leading-tight">
+      {{ section.settings.title }}
+    </h1>
+    <p class="font-body-lg text-body-lg text-[rgba(255,255,255,0.9)] max-w-2xl mx-auto">
+      {{ section.settings.text }}
+    </p>
+    <div class="mt-4">
+      <a href="{{ section.settings.button_link }}" class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURED COLLECTION SECTION ====== -->
+<section class="py-stack-xl bg-background px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="mb-12">
+    <h2 class="font-headline-lg text-headline-lg text-primary uppercase tracking-wider">
+      {{ section.settings.collection_title }}
+    </h2>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+    {% assign featured = collections[section.settings.collection] %}
+    {% if featured != blank %}
+      {% for product in featured.products limit: 4 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% else %}
+      {% for product in collections.all.products limit: 4 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="mt-12 text-center">
+    <a href="/collections/all" class="inline-flex items-center justify-center px-10 py-4 border border-primary text-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-all duration-300 ease-out">
+      View All
+    </a>
+  </div>
+</section>
+
+<!-- ====== BRAND STORY SECTION ====== -->
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] overflow-hidden">
+  <div class="relative aspect-[3/4] md:aspect-auto h-full">
+    {% if section.settings.story_image != blank %}
+      <img src="{{ section.settings.story_image | image_url: width: 900 }}" alt="{{ section.settings.story_heading | escape }}" class="absolute inset-0 w-full h-full object-cover" width="900" height="1200" loading="lazy">
+    {% else %}
+      <div class="absolute inset-0 bg-surface-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-outline-variant" style="font-size:64px">image</span>
+      </div>
+    {% endif %}
+  </div>
+  <div class="flex flex-col justify-center p-12 md:p-margin-desktop bg-[#FBF9F6] text-on-surface">
+    <div class="max-w-xl">
+      <h2 class="font-headline-lg text-headline-lg uppercase tracking-wider mb-8">{{ section.settings.story_heading }}</h2>
+      <div class="flex flex-col gap-6 font-body-md text-on-surface-variant">
+        {{ section.settings.story_text }}
+      </div>
+      {% if section.blocks.size > 0 %}
+        <div class="mt-12 pt-8 border-t border-outline-variant flex flex-wrap gap-8">
+          {% for block in section.blocks %}
+            <div class="flex items-center gap-2" {{ block.shopify_attributes }}>
+              <span class="material-symbols-outlined" style="font-size:20px">{{ block.settings.icon }}</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest">{{ block.settings.label }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Hero Subtitle",
+      "default": "Summer Collection 2026"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hero Heading",
+      "default": "Elegance in Every Thread"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Hero Body Text",
+      "default": "Discover our latest collection crafted from 100% sustainable premium silk and organic cotton."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Featured Collection"
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Section Heading",
+      "default": "Curated Pieces"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to Feature"
+    },
+    {
+      "type": "header",
+      "content": "Brand Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Brand Story Image"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Story Heading",
+      "default": "Crafted for Longevity"
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Story Text",
+      "default": "<p>At Lumina, we believe true luxury is defined by the endurance of both style and substance.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Material Icon Name",
+          "default": "eco"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Badge Text",
+          "default": "100% Organic Cotton"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Page",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "eco",           "label": "100% Organic Cotton" } },
+        { "type": "badge", "settings": { "icon": "handshake",     "label": "Ethically Made" } },
+        { "type": "badge", "settings": { "icon": "local_shipping","label": "Complimentary Shipping" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

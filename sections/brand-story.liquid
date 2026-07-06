@@ -1,0 +1,83 @@
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] overflow-hidden">
+  <!-- Left Side: Image -->
+  <div class="relative aspect-[3/4] md:aspect-auto h-full bg-[#FBF9F6]">
+    {% if section.settings.image != blank %}
+      <img alt="{{ section.settings.title | escape }}" class="absolute inset-0 w-full h-full object-cover" src="{{ section.settings.image | img_url: 'master' }}" />
+    {% else %}
+      <img alt="Placeholder" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDootnpsBPMceC2ExEWrn5y-XaYP-DtNAM5TOCJZvKwXIi7GYR1ku0sZWHPlg4Jq5ckyUuNnxgLBnh0WvjYEn6maydNKzqKGhdoC4bcb9d7WustMiS_tVUjkYV_bZuiSeHUHUSpou3_UqQ8_pszmrT3DW_HIYzIrC-akR0zokccZoagd3iVpZjpPPn3xrZifQjBHepjaPOlpRmD-JdHp67t7fhkGqQutAfzfPzLhiiVHkLLRgcPRNtXdeiPkJd4w8Uluzi_2AJ6Brc4" />
+    {% endif %}
+  </div>
+  <!-- Right Side: Content -->
+  <div class="flex flex-col justify-center p-margin-mobile md:p-margin-desktop bg-[#FBF9F6] text-on-surface">
+    <div class="max-w-xl">
+      <h2 class="font-headline-lg text-headline-lg uppercase tracking-wider mb-8">{{ section.settings.title }}</h2>
+      <div class="flex flex-col gap-6 font-body-md text-on-surface-variant">
+        {{ section.settings.text }}
+      </div>
+      <!-- Bottom Icons -->
+      <div class="mt-12 pt-8 border-t border-outline-variant flex flex-wrap gap-8">
+        {% for block in section.blocks %}
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">{{ block.settings.icon }}</span>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest">{{ block.settings.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Crafted for Longevity"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>At Lumina, we believe that true luxury is defined by the endurance of both style and substance. Our journey begins with a radical commitment to zero-waste production.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_text",
+      "name": "Icon with Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Material Icon Name (e.g. eco)",
+          "default": "eco"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Text",
+          "default": "100% Organic Cotton"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story",
+      "blocks": [
+        { "type": "icon_text", "settings": { "icon": "eco", "label": "100% Organic Cotton" } },
+        { "type": "icon_text", "settings": { "icon": "handshake", "label": "Ethically Made" } },
+        { "type": "icon_text", "settings": { "icon": "local_shipping", "label": "Complimentary Shipping" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
