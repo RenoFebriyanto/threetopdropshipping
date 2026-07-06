@@ -1,44 +1,57 @@
-<div class="group flex flex-col gap-4">
-  <div class="relative aspect-[3/4] overflow-hidden bg-surface-container">
-    <a href="{{ product.url }}">
-      {% if product.featured_image %}
+<article class="product-card group">
+
+  {%- comment -%} ─── Product Image ─── {%- endcomment -%}
+  <div class="pc-image-wrap">
+    <a href="{{ product.url }}" class="pc-image-link" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_image -%}
         <img
           src="{{ product.featured_image | image_url: width: 600 }}"
           alt="{{ product.featured_image.alt | default: product.title | escape }}"
           width="600"
           height="800"
           loading="lazy"
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          class="pc-img"
         >
-      {% else %}
-        <div class="w-full h-full bg-surface-container flex items-center justify-center">
-          <span class="material-symbols-outlined text-outline-variant" style="font-size:48px">image</span>
+      {%- else -%}
+        <div class="pc-img-placeholder">
+          <span class="material-symbols-outlined" style="font-size:48px">image</span>
         </div>
-      {% endif %}
+      {%- endif -%}
     </a>
-    <!-- Quick Add overlay (desktop) -->
-    <div class="absolute inset-0 flex items-end justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
-      <form method="post" action="/cart/add">
+
+    {%- comment -%} Quick Add Overlay — Desktop only {%- endcomment -%}
+    <div class="pc-quick-add-overlay">
+      <form method="post" action="/cart/add" class="pc-quick-add-form">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="w-full py-3 px-8 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-colors duration-300">
-          Quick Add
-        </button>
+        <button type="submit" class="pc-quick-add-btn">Quick Add</button>
       </form>
     </div>
   </div>
 
-  <div class="flex flex-col gap-1">
-    <h3 class="font-body-md text-on-surface">
-      <a href="{{ product.url }}" class="hover:underline">{{ product.title }}</a>
-    </h3>
-    <p class="font-label-sm text-on-surface-variant">{{ product.price | money }}</p>
+  {%- comment -%} ─── Product Info ─── {%- endcomment -%}
+  <div class="pc-info">
 
-    <!-- Quick Add (mobile) -->
-    <form method="post" action="/cart/add" class="md:hidden mt-2">
+    {%- comment -%} Row 1: Title (left) + Price (right) {%- endcomment -%}
+    <div class="pc-info-row">
+      <h3 class="pc-title">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h3>
+      <span class="pc-price">{{ product.price | money }}</span>
+    </div>
+
+    {%- comment -%} Row 2: Variant / Color subtitle {%- endcomment -%}
+    {%- assign first_variant_title = product.variants.first.title -%}
+    {%- unless first_variant_title == 'Default Title' or first_variant_title == blank -%}
+      <p class="pc-variant">{{ first_variant_title }}</p>
+    {%- endunless -%}
+
+    {%- comment -%} Quick Add — Mobile only {%- endcomment -%}
+    <form method="post" action="/cart/add" class="pc-quick-add-mobile">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
       <input type="hidden" name="quantity" value="1">
-      <button type="submit" class="text-left font-label-sm text-label-sm text-primary underline">Quick Add</button>
+      <button type="submit" class="pc-quick-add-mobile-btn">Quick Add</button>
     </form>
+
   </div>
-</div>
+</article>

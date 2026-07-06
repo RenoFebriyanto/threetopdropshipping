@@ -146,3 +146,520 @@ button {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ==========================================================================
+   Collection Page — High-End Minimalist Layout
+   ========================================================================== */
+
+/* ── Page Container ── */
+.collection-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 100px;
+}
+
+@media (max-width: 767px) {
+  .collection-page {
+    padding: 48px 20px 72px;
+  }
+}
+
+/* ── Hero Header ── */
+.collection-header {
+  margin-bottom: 56px;
+}
+
+.collection-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1a1c1c;
+  margin: 0 0 16px;
+}
+
+.collection-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4c4546;
+  max-width: 520px;
+  font-weight: 300;
+}
+
+/* ── Two-Column Layout ── */
+.collection-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+  .collection-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+/* ── Sidebar ── */
+.collection-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 88px;
+}
+
+@media (max-width: 767px) {
+  .collection-sidebar {
+    width: 100%;
+    position: static;
+  }
+}
+
+.collection-filters-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Filter Group ── */
+.collection-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Filter Label (ALL-CAPS, tracked) ── */
+.filter-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1c1c;
+  margin: 0;
+}
+
+/* ── Category Checkbox List ── */
+.filter-checkbox-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #4c4546;
+  transition: color 0.2s ease;
+}
+
+.filter-checkbox-label:hover {
+  color: #1a1c1c;
+}
+
+.filter-checkbox-label.active {
+  color: #1a1c1c;
+  font-weight: 500;
+}
+
+.filter-checkbox-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #cfc4c5;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.filter-checkbox-input:checked {
+  background: #1a1c1c;
+  border-color: #1a1c1c;
+}
+
+.filter-checkbox-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%) rotate(45deg);
+  width: 4px;
+  height: 7px;
+  border-right: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+}
+
+.filter-checkbox-text {
+  line-height: 1;
+}
+
+/* ── Size Filter — Square Buttons ── */
+.filter-size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-btn-label {
+  cursor: pointer;
+}
+
+.size-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #cfc4c5;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #4c4546;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.size-btn:hover {
+  border-color: #1a1c1c;
+  color: #1a1c1c;
+}
+
+.size-btn.active {
+  border-color: #1a1c1c;
+  color: #1a1c1c;
+}
+
+/* ── Color Filter — Circular Swatches ── */
+.filter-swatch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.swatch-label {
+  cursor: pointer;
+}
+
+.color-swatch {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #1a1c1c;
+}
+
+/* ── Price Range Filter ── */
+.filter-price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-price-input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.filter-price-symbol {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #4c4546;
+  pointer-events: none;
+}
+
+.filter-price-input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #cfc4c5;
+  padding: 8px 8px 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1a1c1c;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.filter-price-input:focus {
+  border-color: #1a1c1c;
+}
+
+.filter-price-separator {
+  font-size: 14px;
+  color: #4c4546;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Product Grid
+   ========================================================================== */
+
+.collection-grid-area {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 3-Column Grid: desktop / 2-col: tablet+mobile ── */
+.col-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 1023px) {
+  .col-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .col-grid--3 {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ── Empty State ── */
+.collection-empty {
+  padding: 80px 0;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #7e7576;
+}
+
+/* ==========================================================================
+   Product Card
+   ========================================================================== */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Image Wrapper: enforced 3:4 aspect ratio, no distortion ── */
+.pc-image-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #eeeeee;
+}
+
+.pc-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .pc-img {
+  transform: scale(1.04);
+}
+
+.pc-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfc4c5;
+}
+
+/* ── Quick Add Overlay (desktop hover) ── */
+.pc-quick-add-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.product-card:hover .pc-quick-add-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .pc-quick-add-overlay {
+    display: none;
+  }
+}
+
+.pc-quick-add-form {
+  width: 100%;
+}
+
+.pc-quick-add-btn {
+  width: 100%;
+  padding: 12px 16px;
+  background: #1a1c1c;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pc-quick-add-btn:hover {
+  background: #333;
+}
+
+/* ── Product Info Area ── */
+.pc-info {
+  padding: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Row 1: Title (left) + Price (right) ── */
+.pc-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pc-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #1a1c1c;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.pc-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.pc-title a:hover {
+  opacity: 0.6;
+}
+
+.pc-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1a1c1c;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Row 2: Variant / Color subtitle ── */
+.pc-variant {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #7e7576;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Quick Add — Mobile text link ── */
+.pc-quick-add-mobile {
+  display: none;
+  margin-top: 6px;
+}
+
+.pc-quick-add-mobile-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1a1c1c;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .pc-quick-add-mobile {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Load More Button
+   ========================================================================== */
+
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.btn-load-more {
+  display: inline-block;
+  padding: 14px 48px;
+  background: transparent;
+  border: 1px solid #1a1c1c;
+  color: #1a1c1c;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.btn-load-more:hover {
+  background: #1a1c1c;
+  color: #fff;
+}
