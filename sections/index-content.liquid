@@ -44,18 +44,53 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
     {% assign featured = collections[section.settings.collection] %}
-    {% if featured != blank %}
-      {% for product in featured.products limit: 4 %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
-    {% else %}
-      {% for product in collections.all.products limit: 4 %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
+    {% assign products_source = featured.products %}
+    {% if featured == blank or featured.products.size == 0 %}
+      {% assign products_source = collections.all.products %}
     {% endif %}
+    {% for product in products_source limit: 4 %}
+      <div class="home-card group flex flex-col gap-4">
+        <div class="relative aspect-[3/4] overflow-hidden bg-surface-container">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img
+                src="{{ product.featured_image | image_url: width: 600 }}"
+                alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                width="600" height="800" loading="lazy"
+              >
+            {% else %}
+              <div class="w-full h-full bg-surface-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-outline-variant" style="font-size:48px">image</span>
+              </div>
+            {% endif %}
+          </a>
+          <div class="absolute inset-0 flex items-end justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
+            <form method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="w-full py-3 px-8 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-colors duration-300">
+                Quick Add
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <h3 class="font-body-md text-body-md text-on-surface">
+            <a href="{{ product.url }}" class="hover:underline underline-offset-4 decoration-1">{{ product.title }}</a>
+          </h3>
+          <p class="font-label-sm text-label-sm text-on-surface-variant">{{ product.price | money }}</p>
+          <form method="post" action="/cart/add" class="md:hidden mt-2">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="text-left font-label-sm text-label-sm text-primary underline">Quick Add</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
   </div>
   <div class="mt-12 text-center">
-    <a href="/collections/all" class="inline-flex items-center justify-center px-10 py-4 border border-primary text-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-all duration-300 ease-out">
+    <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="inline-flex items-center justify-center px-10 py-4 border border-primary text-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-all duration-300 ease-out">
       View All
     </a>
   </div>
@@ -90,6 +125,21 @@
       {% endif %}
     </div>
   </div>
+</section>
+
+<!-- ====== CURATED ESSENTIALS TEASER SECTION ====== -->
+<section class="py-stack-xl bg-surface px-margin-mobile md:px-margin-desktop text-center">
+  <h2 class="font-headline-lg text-headline-lg text-primary mb-6">{{ section.settings.teaser_heading }}</h2>
+  <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+    {{ section.settings.teaser_text }}
+  </p>
+  {% if section.settings.teaser_button_label != blank %}
+    <div class="mt-8">
+      <a href="{{ section.settings.teaser_button_link | default: '/collections/all' }}" class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-[#222222] transition-all duration-300 ease-out">
+        {{ section.settings.teaser_button_label }}
+      </a>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -169,6 +219,33 @@
       "id": "story_text",
       "label": "Story Text",
       "default": "<p>At Lumina, we believe true luxury is defined by the endurance of both style and substance.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Curated Essentials Teaser"
+    },
+    {
+      "type": "text",
+      "id": "teaser_heading",
+      "label": "Teaser Heading",
+      "default": "Curated Essentials"
+    },
+    {
+      "type": "text",
+      "id": "teaser_text",
+      "label": "Teaser Subheading",
+      "default": "Our commitment to refined aesthetics continues below."
+    },
+    {
+      "type": "text",
+      "id": "teaser_button_label",
+      "label": "Teaser Button Label (leave blank to hide)",
+      "default": ""
+    },
+    {
+      "type": "url",
+      "id": "teaser_button_link",
+      "label": "Teaser Button Link"
     }
   ],
   "blocks": [

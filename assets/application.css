@@ -148,6 +148,28 @@ button {
 }
 
 /* ==========================================================================
+   Home Page — home-card & teaser section
+   Matches home-page.html reference
+   ========================================================================== */
+
+/* ── Home Product Card (Curated Pieces grid) ── */
+/* Uses same classes as HTML reference: group flex flex-col gap-4 */
+
+/* Image wrapper: aspect-[3/4], no radius, overflow-hidden */
+.home-card .home-card-image-wrap,
+.home-card > div:first-child {
+  /* aspect-ratio set inline via Tailwind class aspect-[3/4] in the HTML */
+}
+
+/* Quick Add overlay button already styled via compiled Tailwind:
+   bg-primary text-on-primary — falls back to these inline definitions */
+
+/* ── Curated Essentials Teaser ── */
+/* py-stack-xl = 120px, bg-surface = #f9f9f9, text-center */
+/* All styles handled by compiled Tailwind classes already in theme.css */
+/* No additional custom CSS needed for this section */
+
+/* ==========================================================================
    Collection Page — coll-* semantic classes
    Matches our-collection.html reference exactly
    ========================================================================== */
