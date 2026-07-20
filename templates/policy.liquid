@@ -1,20 +1,27 @@
 {% layout 'theme' %}
 
-<main class="flex-grow pt-[160px] pb-stack-xl px-margin-mobile md:px-margin-desktop">
-  <div class="max-w-3xl mx-auto flex flex-col space-y-stack-md">
-    <!-- Page Title -->
-    <div class="text-center">
-      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary uppercase tracking-[0.2em] mb-4">{{ page_title }}</h1>
+<main class="flex-grow pt-32 pb-stack-xl px-margin-mobile md:px-margin-desktop">
+  <div class="max-w-3xl mx-auto">
+    <!-- Policy Title Header -->
+    <header class="text-center mb-stack-xl">
+      <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary uppercase tracking-wider mb-6">{{ page_title }}</h1>
       <div class="w-12 h-px bg-outline-variant mx-auto"></div>
-    </div>
+    </header>
 
-    <!-- Content -->
-    <div class="space-y-12 [>&section]:space-y-10 [&>section]:text-left [&>h2]:font-headline-md [&>h2]:text-headline-md [&>h2]:text-primary [&>p]:font-body-md [&>p]:text-body-md [&>p]:text-on-surface-variant [&>p]:leading-relaxed">
-
-      {{ policy.body }}
-    </div>
-
-
+    <!-- Policy Content -->
+    <article class="space-y-stack-md [&>h2]:font-headline-md [&>h2]:text-headline-md [&>h2]:text-primary [&>h2]:uppercase [&>h2]:tracking-wider [&>h2]:mt-stack-md [&>h2]:mb-6 [&>p]:font-body-md [&>p]:text-body-md [&>p]:text-on-surface-variant [&>p]:leading-relaxed [&>p]:mb-6 [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:space-y-3 [&>ul]:text-body-md [&>ul]:text-on-surface-variant [&>ul]:leading-relaxed [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:space-y-3 [&>ol]:text-body-md [&>ol]:text-on-surface-variant [&>ol]:leading-relaxed">
+      {% if page_title contains 'Shipping' %}
+        {{ shop.shipping_policy.body }}
+      {% elsif page_title contains 'Privacy' %}
+        {{ shop.privacy_policy.body }}
+      {% elsif page_title contains 'Terms' %}
+        {{ shop.terms_of_service.body }}
+      {% elsif page_title contains 'Refund' %}
+        {{ shop.refund_policy.body }}
+      {% else %}
+        {{ shop.shipping_policy.body }}
+      {% endif %}
+    </article>
   </div>
 </main>
 

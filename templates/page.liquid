@@ -1,16 +1,17 @@
 {% layout 'theme' %}
 
-<main class="pt-32 pb-stack-xl max-w-container-max mx-auto px-margin-mobile md:px-0">
-  <!-- Hero Header -->
-  <header class="py-stack-lg text-center">
-    <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6 tracking-widest uppercase">{{ page.title }}</h1>
-    <div class="w-16 h-px bg-outline mx-auto mt-8"></div>
-  </header>
+<main class="flex-grow pt-32 pb-stack-xl">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <!-- Page Header -->
+    <header class="mb-stack-md">
+      <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6 uppercase tracking-wider">{{ page.title }}</h1>
+    </header>
 
-  <!-- Typography-Centric Body Content -->
-  <article class="max-w-2xl mx-auto">
-    <section class="mb-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed [&>p]:mb-6 [&>h2]:font-headline-md [&>h2]:text-headline-md [&>h2]:text-primary [&>h2]:mb-6 [&>h2]:uppercase [&>h2]:tracking-wider [&>blockquote]:my-stack-lg [&>blockquote]:border-l-2 [&>blockquote]:border-primary [&>blockquote]:pl-8 [&>blockquote]:py-4 [&>blockquote]:font-headline-lg [&>blockquote]:text-headline-lg [&>blockquote]:text-primary [&>blockquote]:italic [&>blockquote]:leading-relaxed [&>p:first-of-type]:font-body-lg [&>p:first-of-type]:text-body-lg [&>p:first-of-type]:first-letter:text-5xl [&>p:first-of-type]:first-letter:font-headline-lg [&>p:first-of-type]:first-letter:text-primary [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-2 [&>p:first-of-type]:first-letter:-mt-2">
-      {{ page.content }}
-    </section>
-  </article>
+    <!-- Page Content -->
+    <article class="max-w-3xl mx-auto">
+      <section class="space-y-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        {{ page.content }}
+      </section>
+    </article>
+  </div>
 </main>
