@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "index-content": {
+      "type": "index-content",
+      "blocks": {
+        "badge-1": {
+          "type": "badge",
+          "settings": {
+            "icon": "eco",
+            "label": "100% Organic Cotton"
+          }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": {
+            "icon": "handshake",
+            "label": "Ethically Made"
+          }
+        },
+        "badge-3": {
+          "type": "badge",
+          "settings": {
+            "icon": "local_shipping",
+            "label": "Complimentary Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "badge-1",
+        "badge-2",
+        "badge-3"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/a_cinematic_high_end_fashion_campaign_photograph_for_a_luxury_brand._a_model_in.png",
+        "subtitle": "Summer Collection 2026",
+        "title": "Elegance in Every Thread",
+        "text": "Discover our latest collection crafted from 100% sustainable premium silk and organic cotton, designed for the modern conscious wardrobe.",
+        "button_label": "Explore Collection",
+        "button_link": "/collections/all",
+        "collection_title": "Curated Pieces",
+        "collection": "",
+        "story_image": "shopify://shop_images/screen.png",
+        "story_heading": "Crafted for Longevity",
+        "story_text": "<p>At Velio, we believe that true luxury is defined by the endurance of both style and substance. Our journey begins with a radical commitment to zero-waste production, ensuring that every fiber has a purpose and every cut is intentional.</p><p>We source only the finest organic textiles, partnering with heritage mills that share our vision for a regenerative future. By blending traditional craftsmanship with modern innovation, we create pieces that transcend seasons and trends.</p><p>Our philosophy is simple: create less, but better. Each garment is a testament to the beauty of slow fashion, designed to be lived in, loved, and passed down through generations.</p>"
+      }
+    }
+  },
+  "order": [
+    "index-content"
+  ]
+}
