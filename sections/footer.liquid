@@ -55,16 +55,33 @@
   <div class="max-w-container-max mx-auto pt-8 border-t border-[#222222] flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-label-sm text-label-sm tracking-wider">
     <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
     <div class="flex gap-6">
-      {%- if shop.shipping_policy -%}
+      {%- comment -%} Shipping Policy link: prefer Pages handle, fallback to shop policy {%- endcomment -%}
+      {%- if pages['shipping-policy'] -%}
+        <a href="{{ pages['shipping-policy'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['shipping-policy'].title | default: shop.shipping_policy.title }}</a>
+      {%- elsif shop.shipping_policy -%}
         <a href="{{ shop.shipping_policy.url }}" class="hover:text-white transition-colors duration-300">{{ shop.shipping_policy.title }}</a>
       {%- endif -%}
-      {%- if shop.refund_policy -%}
+
+      {%- comment -%} Refund Policy link: prefer Pages handle, fallback to shop policy {%- endcomment -%}
+      {%- if pages['refund-policy'] -%}
+        <a href="{{ pages['refund-policy'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['refund-policy'].title | default: shop.refund_policy.title }}</a>
+      {%- elsif shop.refund_policy -%}
         <a href="{{ shop.refund_policy.url }}" class="hover:text-white transition-colors duration-300">{{ shop.refund_policy.title }}</a>
       {%- endif -%}
-      {%- if shop.privacy_policy -%}
+
+      {%- comment -%} Privacy Policy link: prefer Pages handle, fallback to shop policy {%- endcomment -%}
+      {%- if pages['privacy-policy'] -%}
+        <a href="{{ pages['privacy-policy'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['privacy-policy'].title | default: shop.privacy_policy.title }}</a>
+      {%- elsif shop.privacy_policy -%}
         <a href="{{ shop.privacy_policy.url }}" class="hover:text-white transition-colors duration-300">{{ shop.privacy_policy.title }}</a>
       {%- endif -%}
-      {%- if shop.terms_of_service -%}
+
+      {%- comment -%} Terms of Service link: check common page handles, then fallback to shop terms {%- endcomment -%}
+      {%- if pages['terms-of-use'] -%}
+        <a href="{{ pages['terms-of-use'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['terms-of-use'].title | default: shop.terms_of_service.title }}</a>
+      {%- elsif pages['terms-of-service'] -%}
+        <a href="{{ pages['terms-of-service'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['terms-of-service'].title | default: shop.terms_of_service.title }}</a>
+      {%- elsif shop.terms_of_service -%}
         <a href="{{ shop.terms_of_service.url }}" class="hover:text-white transition-colors duration-300">{{ shop.terms_of_service.title }}</a>
       {%- endif -%}
     </div>

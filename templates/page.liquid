@@ -1,18 +1,23 @@
 {% layout 'theme' %}
 
+{%- comment -%}
+  Only treat the request as a native policy when the path is /policies/*.
+  This avoids overriding the content of CMS pages under /pages/* (so
+  /pages/shipping-policy will render the Page body that you edit in Admin).
+{%- endcomment -%}
 {%- assign is_policy = false -%}
 {%- assign policy_content = page.content -%}
 
-{%- if page.title contains 'Shipping' or page.title contains 'shipping' -%}
+{%- if request.path contains '/policies/shipping' -%}
   {%- assign is_policy = true -%}
   {%- assign policy_content = shop.shipping_policy.body -%}
-{%- elsif page.title contains 'Privacy' or page.title contains 'privacy' -%}
+{%- elsif request.path contains '/policies/privacy' -%}
   {%- assign is_policy = true -%}
   {%- assign policy_content = shop.privacy_policy.body -%}
-{%- elsif page.title contains 'Refund' or page.title contains 'refund' -%}
+{%- elsif request.path contains '/policies/refund' -%}
   {%- assign is_policy = true -%}
   {%- assign policy_content = shop.refund_policy.body -%}
-{%- elsif page.title contains 'Terms' or page.title contains 'terms' -%}
+{%- elsif request.path contains '/policies/terms' -%}
   {%- assign is_policy = true -%}
   {%- assign policy_content = shop.terms_of_service.body -%}
 {%- endif -%}
