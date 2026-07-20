@@ -1,17 +1,121 @@
 {% layout 'theme' %}
 
-<main class="flex-grow pt-32 pb-stack-xl">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-    <!-- Page Header -->
-    <header class="mb-stack-md">
-      <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6 uppercase tracking-wider">{{ page.title }}</h1>
-    </header>
+{%- assign is_policy = false -%}
+{%- assign policy_content = page.content -%}
 
-    <!-- Page Content -->
-    <article class="max-w-3xl mx-auto">
-      <section class="space-y-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
-        {{ page.content }}
-      </section>
-    </article>
-  </div>
-</main>
+{%- if page.title contains 'Shipping' or page.title contains 'shipping' -%}
+  {%- assign is_policy = true -%}
+  {%- assign policy_content = shop.shipping_policy.body -%}
+{%- elsif page.title contains 'Privacy' or page.title contains 'privacy' -%}
+  {%- assign is_policy = true -%}
+  {%- assign policy_content = shop.privacy_policy.body -%}
+{%- elsif page.title contains 'Refund' or page.title contains 'refund' -%}
+  {%- assign is_policy = true -%}
+  {%- assign policy_content = shop.refund_policy.body -%}
+{%- elsif page.title contains 'Terms' or page.title contains 'terms' -%}
+  {%- assign is_policy = true -%}
+  {%- assign policy_content = shop.terms_of_service.body -%}
+{%- endif -%}
+
+{% if is_policy %}
+  <!-- POLICY PAGE STYLING -->
+  <main class="flex-grow" style="padding-top: 128px; padding-bottom: 120px;">
+    <div style="max-width: 768px; margin: 0 auto; padding-left: 20px; padding-right: 20px;">
+      <!-- Policy Title Header -->
+      <header style="text-align: center; margin-bottom: 120px;">
+        <h1 style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: #000000; margin-bottom: 24px; line-height: 1.2;">{{ page.title }}</h1>
+        <div style="width: 48px; height: 1px; background-color: #cfc4c5; margin: 0 auto;"></div>
+      </header>
+
+      <!-- Policy Content -->
+      <article style="display: flex; flex-direction: column; gap: 48px;">
+        <div style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #4c4546;">
+          {{ policy_content }}
+        </div>
+      </article>
+
+      <!-- Styling for nested elements inside policy content -->
+      <style>
+        article h2 {
+          font-family: 'Bodoni Moda', serif;
+          font-size: 24px;
+          font-weight: 400;
+          color: #000000;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 48px;
+          margin-bottom: 24px;
+          line-height: 1.4;
+        }
+        
+        article h3 {
+          font-family: 'Bodoni Moda', serif;
+          font-size: 20px;
+          font-weight: 400;
+          color: #000000;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 36px;
+          margin-bottom: 18px;
+          line-height: 1.4;
+        }
+        
+        article p {
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          color: #4c4546;
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+        
+        article ul {
+          list-style-type: disc;
+          margin-left: 24px;
+          margin-bottom: 24px;
+          color: #4c4546;
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          line-height: 1.6;
+        }
+        
+        article ol {
+          list-style-type: decimal;
+          margin-left: 24px;
+          margin-bottom: 24px;
+          color: #4c4546;
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          line-height: 1.6;
+        }
+        
+        article li {
+          margin-bottom: 12px;
+        }
+        
+        article strong {
+          font-weight: 500;
+          color: #000000;
+        }
+      </style>
+    </div>
+  </main>
+
+{% else %}
+  <!-- GENERIC PAGE STYLING -->
+  <main class="flex-grow pt-32 pb-stack-xl">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <!-- Page Header -->
+      <header class="mb-stack-md">
+        <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6 uppercase tracking-wider">{{ page.title }}</h1>
+      </header>
+
+      <!-- Page Content -->
+      <article class="max-w-3xl mx-auto">
+        <section class="space-y-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          {{ page.content }}
+        </section>
+      </article>
+    </div>
+  </main>
+{% endif %}
