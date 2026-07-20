@@ -8,14 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {
-    "blocks": {
-      "626641312950518443": {
-        "type": "shopify://apps/gempages-cro/blocks/embed-gp-script-head/20b379d4-1b20-474c-a6ca-665c331919f3",
-        "disabled": false,
-        "settings": {}
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "shipping_text": "Complimentary worldwide shipping on all orders. Returns accepted within 30 days of purchase."
       }
     }
   },
-  "presets": null
+  "order": ["main"]
 }
