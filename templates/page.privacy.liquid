@@ -1,55 +1,80 @@
-{% comment %} DEPRECATED - digantikan oleh templates/policy.liquid,
-silakan hapus Page 'privacy-policy' di Shopify Admin setelah Shipping/Refund/Privacy/Terms Policy diisi di Settings > Policies.
-{% endcomment %}
 {% layout 'theme' %}
 
-<main class="flex-grow pt-32 pb-stack-xl px-margin-mobile md:px-margin-desktop">
-<article class="max-w-3xl mx-auto">
-<header class="mb-stack-lg text-center">
-<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Privacy Policy</h1>
-<p class="font-body-lg text-body-lg text-secondary">Last Updated: October 26, 2024</p>
-</header>
-<div class="space-y-stack-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
-<section>
-<p class="mb-6">At Velio, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you interact with our brand, both online and in our boutiques.</p>
-</section>
-<section>
-<h2 class="font-headline-md text-headline-md text-primary mb-6">Information We Collect</h2>
-<p class="mb-4">We collect information that you provide directly to us when you make a purchase, create an account, or contact our customer service. This may include:</p>
-<ul class="pl-6 space-y-2 mb-6 text-secondary" style="list-style-type: disc !important;">
-<li style="display: list-item !important;">Contact information (name, email address, phone number)</li>
-<li style="display: list-item !important;">Shipping and billing addresses</li>
-<li style="display: list-item !important;">Payment information (processed securely through our partners)</li>
-<li style="display: list-item !important;">Purchase history and preferences</li>
-</ul>
-<p>Additionally, we automatically collect certain information about your device and how you interact with our website, such as IP addresses, browsing behavior, and device identifiers.</p>
-</section>
-<section>
-<h2 class="font-headline-md text-headline-md text-primary mb-6">How We Use Your Data</h2>
-<p class="mb-4">We use the collected information for various purposes, including:</p>
-<ul class="pl-6 space-y-2 mb-6 text-secondary" style="list-style-type: disc !important;">
-<li style="display: list-item !important;">Fulfilling and managing your orders</li>
-<li style="display: list-item !important;">Communicating with you about products, services, and promotions</li>
-<li style="display: list-item !important;">Personalizing your shopping experience</li>
-<li style="display: list-item !important;">Improving our website and customer service</li>
-<li style="display: list-item !important;">Preventing fraudulent transactions and ensuring security</li>
-</ul>
-</section>
-<section>
-<h2 class="font-headline-md text-headline-md text-primary mb-6">Data Security</h2>
-<p class="mb-6">We implement robust technical and organizational measures to protect your personal information against unauthorized access, loss, or alteration. Our payment processes adhere to strict industry standards (PCI-DSS) to ensure the confidentiality of your financial data. While we strive to protect your personal data, no method of transmission over the Internet is 100% secure.</p>
-</section>
-<section>
-<h2 class="font-headline-md text-headline-md text-primary mb-6">Your Rights</h2>
-<p class="mb-4">You have several rights regarding your personal information, including:</p>
-<ul class="pl-6 space-y-2 mb-6 text-secondary" style="list-style-type: disc !important;">
-<li style="display: list-item !important;">The right to access the personal data we hold about you</li>
-<li style="display: list-item !important;">The right to request correction of inaccurate data</li>
-<li style="display: list-item !important;">The right to request deletion of your personal data</li>
-<li style="display: list-item !important;">The right to opt-out of marketing communications</li>
-</ul>
-<p>To exercise these rights, please contact our privacy team at privacy@velio.com.</p>
-</section>
-</div>
-</article>
+{%- comment -%}
+	templates/page.privacy.liquid
+	------------------------------------------------------------
+	Page ini digunakan untuk template custom Privacy Policy.
+	Konten yang terlihat di website diambil dari "Page body" di Online Store > Pages.
+
+	Jangan hardcode teks Privacy Policy langsung di template.
+	Jika kamu mengedit halaman Privacy Policy lewat Shopify Admin, pastikan
+	halaman tersebut memakai template "page.privacy".
+
+	Gunakan page.title, page.updated_at, dan page.content agar konten tetap
+	konsisten dan mudah diperbarui dari CMS.
+{%- endcomment -%}
+
+<main class="flex-grow" style="padding-top: 128px; padding-bottom: 120px;">
+	<div style="max-width: 768px; margin: 0 auto; padding-left: 20px; padding-right: 20px;">
+
+		<header style="text-align: center; margin-bottom: 120px;">
+			<h1 style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: #000000; margin-bottom: 24px; line-height: 1.2;">{{ page.title }}</h1>
+			<div style="width: 48px; height: 1px; background-color: #cfc4c5; margin: 0 auto;"></div>
+			<p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.8; color: #4c4546; margin-top: 24px;">Last updated: {{ page.updated_at | date: "%B %-d, %Y" }}</p>
+		</header>
+
+		<article style="display: flex; flex-direction: column; gap: 48px;">
+			<div style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #4c4546;">
+				{{ page.content }}
+			</div>
+		</article>
+
+		<style>
+			article h2 {
+				font-family: 'Bodoni Moda', serif;
+				font-size: 24px;
+				font-weight: 400;
+				color: #000000;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				margin-top: 48px;
+				margin-bottom: 24px;
+				line-height: 1.4;
+			}
+
+			article p {
+				font-family: 'Inter', sans-serif;
+				font-size: 16px;
+				font-weight: 400;
+				color: #4c4546;
+				line-height: 1.6;
+				margin-bottom: 24px;
+			}
+
+			article ul,
+			article ol {
+				margin-left: 24px;
+				margin-bottom: 24px;
+				color: #4c4546;
+				font-family: 'Inter', sans-serif;
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			article li {
+				margin-bottom: 12px;
+			}
+
+			article strong {
+				font-weight: 500;
+				color: #000000;
+			}
+
+			article a {
+				color: #000000;
+				text-decoration: underline;
+			}
+		</style>
+
+	</div>
 </main>
