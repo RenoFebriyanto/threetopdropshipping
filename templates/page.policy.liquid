@@ -1,17 +1,23 @@
 {% layout 'theme' %}
 
-{%- assign policy_title = shop.shipping_policy.title | default: 'Policy' -%}
-{%- assign policy_body = shop.shipping_policy.body -%}
+{%- assign policy_title = '' -%}
+{%- assign policy_body = '' -%}
 
-{%- if request.path contains '/policies/privacy' -%}
+{%- if page.title contains 'Shipping' -%}
+  {%- assign policy_title = shop.shipping_policy.title -%}
+  {%- assign policy_body = shop.shipping_policy.body -%}
+{%- elsif page.title contains 'Privacy' -%}
   {%- assign policy_title = shop.privacy_policy.title -%}
   {%- assign policy_body = shop.privacy_policy.body -%}
-{%- elsif request.path contains '/policies/refund' -%}
+{%- elsif page.title contains 'Refund' -%}
   {%- assign policy_title = shop.refund_policy.title -%}
   {%- assign policy_body = shop.refund_policy.body -%}
-{%- elsif request.path contains '/policies/terms' -%}
+{%- elsif page.title contains 'Terms' -%}
   {%- assign policy_title = shop.terms_of_service.title -%}
   {%- assign policy_body = shop.terms_of_service.body -%}
+{%- else -%}
+  {%- assign policy_title = page.title -%}
+  {%- assign policy_body = page.content -%}
 {%- endif -%}
 
 <main class="flex-grow pt-32 pb-stack-xl px-margin-mobile md:px-margin-desktop">
@@ -28,7 +34,3 @@
     </article>
   </div>
 </main>
-
-
-
-
