@@ -63,8 +63,8 @@
       {%- endif -%}
 
       {%- comment -%} Refund Policy link: prefer Pages handle, fallback to shop policy {%- endcomment -%}
-      {%- if pages['refund-policy'] -%}
-        <a href="{{ pages['refund-policy'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['refund-policy'].title | default: shop.refund_policy.title }}</a>
+      {%- if pages['return-policy'] -%}
+        <a href="{{ pages['return-policy'].url }}" class="hover:text-white transition-colors duration-300">{{ pages['return-policy'].title | default: shop.refund_policy.title }}</a>
       {%- elsif shop.refund_policy -%}
         <a href="{{ shop.refund_policy.url }}" class="hover:text-white transition-colors duration-300">{{ shop.refund_policy.title }}</a>
       {%- endif -%}
