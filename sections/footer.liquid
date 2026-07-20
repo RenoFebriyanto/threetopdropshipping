@@ -55,8 +55,9 @@
   <div class="max-w-container-max mx-auto pt-8 border-t border-[#222222] flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-label-sm text-label-sm tracking-wider">
     <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
     <div class="flex gap-6">
-      <a href="/pages/privacy-policy" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
-      <a href="/pages/terms-of-use" class="hover:text-white transition-colors duration-300">Terms of Use</a>
+      {% for policy in shop.policies %}
+        <a href="{{ policy.url }}" class="hover:text-white transition-colors duration-300">{{ policy.title }}</a>
+      {% endfor %}
     </div>
   </div>
 </footer>
